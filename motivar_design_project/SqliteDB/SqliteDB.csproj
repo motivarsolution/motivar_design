@@ -69,6 +69,7 @@
     <Compile Include="dbForm.Designer.cs">
       <DependentUpon>dbForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\dbconnect.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
