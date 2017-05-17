@@ -16,7 +16,10 @@ namespace SqliteDB
         public dbForm()
         {
             InitializeComponent();
+
             dbconnect.dbCreate();
+            dbconnect.dbConnection();
+            dbconnect.dbCreateTable();
         }
     }
 }
