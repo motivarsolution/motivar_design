@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="myDBDataSet" targetNamespace="http://tempuri.org/myDBDataSet.xsd" xmlns:mstns="http://tempuri.org/myDBDataSet.xsd" xmlns="http://tempuri.org/myDBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="myDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="myDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TEST.Properties.Settings.GlobalReference.Default.myDBConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="myDBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="myDBDataSet" msprop:Generator_UserDSName="myDBDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Account" msprop:Generator_TableClassName="AccountDataTable" msprop:Generator_TableVarName="tableAccount" msprop:Generator_TablePropName="Account" msprop:Generator_RowDeletingName="AccountRowDeleting" msprop:Generator_RowChangingName="AccountRowChanging" msprop:Generator_RowEvHandlerName="AccountRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountRowDeleted" msprop:Generator_UserTableName="Account" msprop:Generator_RowChangedName="AccountRowChanged" msprop:Generator_RowEvArgName="AccountRowChangeEvent" msprop:Generator_RowClassName="AccountRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AccountID" msprop:Generator_ColumnVarNameInTable="columnAccountID" msprop:Generator_ColumnPropNameInRow="AccountID" msprop:Generator_ColumnPropNameInTable="AccountIDColumn" msprop:Generator_UserColumnName="AccountID" type="xs:string" minOccurs="0" />
+              <xs:element name="Username" msprop:Generator_ColumnVarNameInTable="columnUsername" msprop:Generator_ColumnPropNameInRow="Username" msprop:Generator_ColumnPropNameInTable="UsernameColumn" msprop:Generator_UserColumnName="Username" type="xs:string" minOccurs="0" />
+              <xs:element name="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn" msprop:Generator_UserColumnName="Password" type="xs:string" minOccurs="0" />
+              <xs:element name="DisplayName" msprop:Generator_ColumnVarNameInTable="columnDisplayName" msprop:Generator_ColumnPropNameInRow="DisplayName" msprop:Generator_ColumnPropNameInTable="DisplayNameColumn" msprop:Generator_UserColumnName="DisplayName" type="xs:string" minOccurs="0" />
+              <xs:element name="Roles" msprop:Generator_ColumnVarNameInTable="columnRoles" msprop:Generator_ColumnPropNameInRow="Roles" msprop:Generator_ColumnPropNameInTable="RolesColumn" msprop:Generator_UserColumnName="Roles" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Customer" msprop:Generator_TableClassName="CustomerDataTable" msprop:Generator_TableVarName="tableCustomer" msprop:Generator_TablePropName="Customer" msprop:Generator_RowDeletingName="CustomerRowDeleting" msprop:Generator_RowChangingName="CustomerRowChanging" msprop:Generator_RowEvHandlerName="CustomerRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomerRowDeleted" msprop:Generator_UserTableName="Customer" msprop:Generator_RowChangedName="CustomerRowChanged" msprop:Generator_RowEvArgName="CustomerRowChangeEvent" msprop:Generator_RowClassName="CustomerRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomerID" msprop:Generator_ColumnVarNameInTable="columnCustomerID" msprop:Generator_ColumnPropNameInRow="CustomerID" msprop:Generator_ColumnPropNameInTable="CustomerIDColumn" msprop:Generator_UserColumnName="CustomerID" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerAddessID" msprop:Generator_ColumnVarNameInTable="columnCustomerAddessID" msprop:Generator_ColumnPropNameInRow="CustomerAddessID" msprop:Generator_ColumnPropNameInTable="CustomerAddessIDColumn" msprop:Generator_UserColumnName="CustomerAddessID" type="xs:string" minOccurs="0" />
+              <xs:element name="AccountID" msprop:Generator_ColumnVarNameInTable="columnAccountID" msprop:Generator_ColumnPropNameInRow="AccountID" msprop:Generator_ColumnPropNameInTable="AccountIDColumn" msprop:Generator_UserColumnName="AccountID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="AccountKey1">
+      <xs:selector xpath=".//mstns:Account" />
+      <xs:field xpath="mstns:AccountID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Account_Customer" msdata:parent="Account" msdata:child="Customer" msdata:parentkey="AccountID" msdata:childkey="AccountID" msprop:Generator_UserChildTable="Customer" msprop:Generator_ChildPropName="GetCustomerRows" msprop:Generator_UserRelationName="Account_Customer" msprop:Generator_ParentPropName="AccountRow" msprop:Generator_RelationVarName="relationAccount_Customer" msprop:Generator_UserParentTable="Account" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
