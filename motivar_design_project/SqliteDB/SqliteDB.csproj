@@ -91,6 +91,8 @@
       <DependentUpon>dbForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\ConnectGoogleDrive.cs" />
+    <Compile Include="Model\CreateDatabase.cs" />
     <Compile Include="Model\dbconn.cs" />
     <Compile Include="Model\dbconnect.cs" />
     <Compile Include="Program.cs" />
