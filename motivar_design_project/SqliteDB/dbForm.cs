@@ -98,12 +98,21 @@ namespace SqliteDB
                 dr.EndEdit();
                 dt.Rows.Add(dr);
             }
+            
             Grid.DataSource = dt;
         }
 
         public void SetConnection()
         {
-            sql_con = new SQLiteConnection(@"Data Source=C:\Users\motivar\OneDrive\MOTIVAR\Database_Prototype.db;Version=3;");
+            if(Environment.MachineName == "DESKTOP-P3P3RQJ")
+            {
+                sql_con = new SQLiteConnection(@"Data Source=E:\OneDrive\MOTIVAR\Database_Prototype.db;Version=3;");
+            }
+            else
+            {
+                sql_con = new SQLiteConnection(@"Data Source=C:\Users\motivar\OneDrive\MOTIVAR\Database_Prototype.db;Version=3;");
+            }
+
         }
 
         //public DataTable ToDataTable<AccountModel>(this IEnumerable<AccountModel> collection)
@@ -145,16 +154,18 @@ namespace SqliteDB
         {
             InitializeComponent();
 
-            /*dbconnect.dbCreate();
-            dbconnect.dbConnection();
-            dbconnect.dbCreateTable();*/
+            SetProperties();
 
-            //dbconn();
             dbReadToList();
             ListToDataSet();
 
             //ConnectGoogleDrive.Connect();
 
+        }
+
+        private void SetProperties()
+        {
+            this.Grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void Grid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -173,17 +184,18 @@ namespace SqliteDB
 
             if (Grid.SelectedRows.Count > 0)
             {
-                RowSelectedText = Grid.CurrentRow.Cells[0].Value.ToString() + " "
-                                + Grid.CurrentRow.Cells[1].Value.ToString() + " "
-                                + Grid.CurrentRow.Cells[2].Value.ToString() + " "
-                                + Grid.CurrentRow.Cells[3].Value.ToString() + " "
-                                + Grid.CurrentRow.Cells[4].Value.ToString() + " ";
+                RowSelectedText = Grid.CurrentRow.Cells["AccountID"].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells["Username"].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells["Password"].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells["DisplayName"].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells["Roles"].Value.ToString() + " ";
                 
             }
             SelectedTextbox.Text = RowSelectedText;
 
 
             Debug.WriteLine(SelectedTextbox.Text);
+
         }
     }
 }
