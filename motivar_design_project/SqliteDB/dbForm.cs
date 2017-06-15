@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -154,6 +155,22 @@ namespace SqliteDB
 
             //ConnectGoogleDrive.Connect();
 
+        }
+
+        private void Grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //SelectedTextbox.Text = Grid.CurrentCell.Value.ToString() + " ||   " 
+            //    + Grid.CurrentCell.ColumnIndex.ToString() + " : " + Grid.CurrentCell.RowIndex.ToString();
+
+            //Debug.WriteLine(SelectedTextbox.Text);
+        }
+
+        private void Grid_SelectionChanged(object sender, EventArgs e)
+        {
+            SelectedTextbox.Text = Grid.CurrentCell.Value.ToString() + " ||   "
+                + Grid.CurrentCell.ColumnIndex.ToString() + " : " + Grid.CurrentCell.RowIndex.ToString();
+
+            Debug.WriteLine(SelectedTextbox.Text);
         }
     }
 }
