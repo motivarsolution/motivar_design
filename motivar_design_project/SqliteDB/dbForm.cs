@@ -167,8 +167,21 @@ namespace SqliteDB
 
         private void Grid_SelectionChanged(object sender, EventArgs e)
         {
-            SelectedTextbox.Text = Grid.CurrentCell.Value.ToString() + " ||   "
-                + Grid.CurrentCell.ColumnIndex.ToString() + " : " + Grid.CurrentCell.RowIndex.ToString();
+            //SelectedTextbox.Text = Grid.CurrentCell.Value.ToString() + " ||   "
+            //    + Grid.CurrentCell.ColumnIndex.ToString() + " : " + Grid.CurrentCell.RowIndex.ToString();
+            string RowSelectedText = "";
+
+            if (Grid.SelectedRows.Count > 0)
+            {
+                RowSelectedText = Grid.CurrentRow.Cells[0].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells[1].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells[2].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells[3].Value.ToString() + " "
+                                + Grid.CurrentRow.Cells[4].Value.ToString() + " ";
+                
+            }
+            SelectedTextbox.Text = RowSelectedText;
+
 
             Debug.WriteLine(SelectedTextbox.Text);
         }
