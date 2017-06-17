@@ -20,26 +20,6 @@ namespace SqliteDB
         private List<AccountModel> EntryList = new List<AccountModel>();
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
-        private SQLiteDataAdapter DB;
-        private SQLiteDataReader RD;
-        private DataSet DS = new DataSet("SqliteDataSet");
-        private DataTable DT = new DataTable("Account");
-
-        //public void dbconn()
-        //{
-        //    SetConnection();
-        //    sql_con.Open();
-
-        //    sql_cmd = sql_con.CreateCommand();
-        //    string CommandText = "select * from Account";
-        //    DB = new SQLiteDataAdapter(CommandText, sql_con);
-        //    DS.Reset();
-        //    DB.Fill(DS);
-        //    DT = DS.Tables[0];
-        //    Grid.DataSource = DT;
-        //    sql_con.Close();
-            
-        //}
 
         private void dbReadToList()
         {
@@ -101,38 +81,6 @@ namespace SqliteDB
             }
             
             Grid.DataSource = dt;
-        }
-
-        private void RefreshDataSet()
-        {
-            SetConnection();
-            sql_con.Open();
-            sql_cmd = sql_con.CreateCommand();
-            string CommandText = "select * from Account";
-
-            using (SQLiteCommand cmd = new SQLiteCommand(CommandText, sql_con))
-            {
-                using (SQLiteDataReader rdr = cmd.ExecuteReader())
-                {
-                    while (rdr.Read())
-                    {
-                        AcList.Add(new AccountModel
-                        {
-                            AccountID = rdr["AccountID"].ToString()
-                                                      ,
-                            Username = rdr["Username"].ToString()
-                                                      ,
-                            Password = rdr["Password"].ToString()
-                                                      ,
-                            DisplayName = rdr["DisplayName"].ToString()
-                                                      ,
-                            Roles = rdr["Roles"].ToString()
-                        });
-                    }
-                }
-            }
-
-            sql_con.Close();
         }
 
         public void SetConnection()
@@ -201,13 +149,47 @@ namespace SqliteDB
         {
             SetConnection();
             sql_con.Open();
-            SQLiteCommand CommandText = new SQLiteCommand("INSERT INTO Account (AccountID , Username , Password , DisplayName , Roles) VALUES ('"+ _EntryList.First().AccountID + "','" + _EntryList.First().Username + "','" + _EntryList.First().Password + "','" + _EntryList.First().DisplayName + "','" + _EntryList.First().Roles + "')", sql_con);
 
-            CommandText.ExecuteNonQuery();
+            if(_EntryList.Count == 1)
+            {
 
+                SQLiteCommand CommandText = new SQLiteCommand("INSERT INTO Account (AccountID , Username , Password , DisplayName , Roles) VALUES (@AccountID,@Username,@Password,@DisplayName,@Roles)", sql_con);
+
+                CommandText.CommandType = CommandType.Text;
+
+                CommandText.Parameters.Add(new SQLiteParameter("@AccountID", _EntryList.First().AccountID));
+                CommandText.Parameters.Add(new SQLiteParameter("@Username", _EntryList.First().Username));
+                CommandText.Parameters.Add(new SQLiteParameter("@Password", _EntryList.First().Password));
+                CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", _EntryList.First().DisplayName));
+                CommandText.Parameters.Add(new SQLiteParameter("@Roles", _EntryList.First().Roles));
+
+                CommandText.ExecuteNonQuery();
+
+                AcList.Add(_EntryList.First());
+                ListToDataSet();
+
+            }
+            else
+            {
+                foreach (var item in _EntryList)
+                {
+                    SQLiteCommand CommandText = new SQLiteCommand("INSERT INTO Account (AccountID , Username , Password , DisplayName , Roles) VALUES (@AccountID,@Username,@Password,@DisplayName,@Roles)", sql_con);
+
+                    CommandText.CommandType = CommandType.Text;
+
+                    CommandText.Parameters.Add(new SQLiteParameter("@AccountID", item.AccountID));
+                    CommandText.Parameters.Add(new SQLiteParameter("@Username", item.Username));
+                    CommandText.Parameters.Add(new SQLiteParameter("@Password", item.Password));
+                    CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", item.DisplayName));
+                    CommandText.Parameters.Add(new SQLiteParameter("@Roles", item.Roles));
+                    AcList.Add(_EntryList.First());
+                }
+
+                ListToDataSet();
+            }
+          
             sql_con.Close();
-
-            AcList.Add(_EntryList.First());
+            _EntryList.Clear();
 
 
         }
