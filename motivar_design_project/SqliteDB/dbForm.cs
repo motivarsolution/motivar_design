@@ -166,6 +166,7 @@ namespace SqliteDB
         private void SetProperties()
         {
             this.Grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.Grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }
 
         private void Grid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -189,9 +190,19 @@ namespace SqliteDB
                                 + Grid.CurrentRow.Cells["Password"].Value.ToString() + " "
                                 + Grid.CurrentRow.Cells["DisplayName"].Value.ToString() + " "
                                 + Grid.CurrentRow.Cells["Roles"].Value.ToString() + " ";
-                
+
+                AccountIDTextbox.Text = Grid.CurrentRow.Cells["AccountID"].Value.ToString();
+                UsernameTextbox.Text = Grid.CurrentRow.Cells["Username"].Value.ToString();
+                PasswordTextbox.Text = Grid.CurrentRow.Cells["Password"].Value.ToString();
+                DisplayNameTextbox.Text = Grid.CurrentRow.Cells["DisplayName"].Value.ToString();
+                RolesTextbox.Text = Grid.CurrentRow.Cells["Roles"].Value.ToString();
+
+
             }
             SelectedTextbox.Text = RowSelectedText;
+
+
+
 
 
             Debug.WriteLine(SelectedTextbox.Text);
