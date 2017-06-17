@@ -17,6 +17,7 @@ namespace SqliteDB
     public partial class dbForm : Form
     {
         private List<AccountModel> AcList = new List<AccountModel>();
+        private List<AccountModel> EntryList = new List<AccountModel>();
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
         private SQLiteDataAdapter DB;
@@ -24,21 +25,21 @@ namespace SqliteDB
         private DataSet DS = new DataSet("SqliteDataSet");
         private DataTable DT = new DataTable("Account");
 
-        public void dbconn()
-        {
-            SetConnection();
-            sql_con.Open();
+        //public void dbconn()
+        //{
+        //    SetConnection();
+        //    sql_con.Open();
 
-            sql_cmd = sql_con.CreateCommand();
-            string CommandText = "select * from Account";
-            DB = new SQLiteDataAdapter(CommandText, sql_con);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-            Grid.DataSource = DT;
-            sql_con.Close();
+        //    sql_cmd = sql_con.CreateCommand();
+        //    string CommandText = "select * from Account";
+        //    DB = new SQLiteDataAdapter(CommandText, sql_con);
+        //    DS.Reset();
+        //    DB.Fill(DS);
+        //    DT = DS.Tables[0];
+        //    Grid.DataSource = DT;
+        //    sql_con.Close();
             
-        }
+        //}
 
         private void dbReadToList()
         {
@@ -102,6 +103,38 @@ namespace SqliteDB
             Grid.DataSource = dt;
         }
 
+        private void RefreshDataSet()
+        {
+            SetConnection();
+            sql_con.Open();
+            sql_cmd = sql_con.CreateCommand();
+            string CommandText = "select * from Account";
+
+            using (SQLiteCommand cmd = new SQLiteCommand(CommandText, sql_con))
+            {
+                using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        AcList.Add(new AccountModel
+                        {
+                            AccountID = rdr["AccountID"].ToString()
+                                                      ,
+                            Username = rdr["Username"].ToString()
+                                                      ,
+                            Password = rdr["Password"].ToString()
+                                                      ,
+                            DisplayName = rdr["DisplayName"].ToString()
+                                                      ,
+                            Roles = rdr["Roles"].ToString()
+                        });
+                    }
+                }
+            }
+
+            sql_con.Close();
+        }
+
         public void SetConnection()
         {
             if(Environment.MachineName == "DESKTOP-P3P3RQJ")
@@ -115,40 +148,6 @@ namespace SqliteDB
 
         }
 
-        //public DataTable ToDataTable<AccountModel>(this IEnumerable<AccountModel> collection)
-        //{
-        //    DataTable dt = new DataTable("DataTable");
-        //    Type t = typeof(AccountModel);
-        //    PropertyInfo[] pia = t.GetProperties();
-
-        //    //Inspect the properties and create the columns in the DataTable
-        //    foreach (PropertyInfo pi in pia)
-        //    {
-        //        Type ColumnType = pi.PropertyType;
-        //        if ((ColumnType.IsGenericType))
-        //        {
-        //            ColumnType = ColumnType.GetGenericArguments()[0];
-        //        }
-        //        dt.Columns.Add(pi.Name, ColumnType);
-        //    }
-
-        //    //Populate the data table
-        //    foreach (T item in collection)
-        //    {
-        //        DataRow dr = dt.NewRow();
-        //        dr.BeginEdit();
-        //        foreach (PropertyInfo pi in pia)
-        //        {
-        //            if (pi.GetValue(item, null) != null)
-        //            {
-        //                dr[pi.Name] = pi.GetValue(item, null);
-        //            }
-        //        }
-        //        dr.EndEdit();
-        //        dt.Rows.Add(dr);
-        //    }
-        //    return dt;
-        //}
 
         public dbForm()
         {
@@ -167,14 +166,6 @@ namespace SqliteDB
         {
             this.Grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.Grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-        }
-
-        private void Grid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //SelectedTextbox.Text = Grid.CurrentCell.Value.ToString() + " ||   " 
-            //    + Grid.CurrentCell.ColumnIndex.ToString() + " : " + Grid.CurrentCell.RowIndex.ToString();
-
-            //Debug.WriteLine(SelectedTextbox.Text);
         }
 
         private void Grid_SelectionChanged(object sender, EventArgs e)
@@ -202,11 +193,53 @@ namespace SqliteDB
             SelectedTextbox.Text = RowSelectedText;
 
 
-
-
-
             Debug.WriteLine(SelectedTextbox.Text);
 
+        }
+
+        private void InsertDatabase(List<AccountModel> _EntryList)//Should not List beccause Input each 1 data set
+        {
+            SetConnection();
+            sql_con.Open();
+            SQLiteCommand CommandText = new SQLiteCommand("INSERT INTO Account (AccountID , Username , Password , DisplayName , Roles) VALUES ('"+ _EntryList.First().AccountID + "','" + _EntryList.First().Username + "','" + _EntryList.First().Password + "','" + _EntryList.First().DisplayName + "','" + _EntryList.First().Roles + "')", sql_con);
+
+            CommandText.ExecuteNonQuery();
+
+            sql_con.Close();
+
+            AcList.Add(_EntryList.First());
+
+
+        }
+
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+
+            EntryList.Add(new AccountModel()
+            {
+                AccountID = AccountIDTextbox.Text
+                                            ,
+                Username = UsernameTextbox.Text
+                                            ,
+                Password = AES.AESController.EncryptText(PasswordTextbox.Text, "MOTIVAR")
+                                            ,
+                DisplayName = DisplayNameTextbox.Text
+                                            ,
+                Roles = RolesTextbox.Text
+            });
+
+            InsertDatabase(EntryList);
+
+
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            AccountIDTextbox.Text = "";
+            UsernameTextbox.Text = "";
+            PasswordTextbox.Text = "";
+            DisplayNameTextbox.Text = "";
+            RolesTextbox.Text = "";
         }
     }
 }

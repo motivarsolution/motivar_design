@@ -59,7 +59,6 @@
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Grid.Size = new System.Drawing.Size(785, 150);
             this.Grid.TabIndex = 0;
-            this.Grid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellClick);
             this.Grid.SelectionChanged += new System.EventHandler(this.Grid_SelectionChanged);
             // 
             // SelectedTextbox
@@ -83,7 +82,6 @@
             // 
             // AccountIDTextbox
             // 
-            this.AccountIDTextbox.Enabled = false;
             this.AccountIDTextbox.Location = new System.Drawing.Point(131, 255);
             this.AccountIDTextbox.Name = "AccountIDTextbox";
             this.AccountIDTextbox.Size = new System.Drawing.Size(184, 22);
@@ -170,6 +168,7 @@
             this.NewButton.TabIndex = 13;
             this.NewButton.Text = "New";
             this.NewButton.UseVisualStyleBackColor = true;
+            this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
             // ClearButton
             // 
@@ -179,6 +178,7 @@
             this.ClearButton.TabIndex = 14;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // groupBox1
             // 
