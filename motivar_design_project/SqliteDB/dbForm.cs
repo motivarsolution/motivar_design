@@ -26,7 +26,7 @@ namespace SqliteDB
             SetConnection();
             sql_con.Open();
             sql_cmd = sql_con.CreateCommand();
-            string CommandText = "select * from Account";
+            string CommandText = "SELECT * FROM Account";
 
             using (SQLiteCommand cmd = new SQLiteCommand(CommandText, sql_con))
             {
@@ -104,8 +104,12 @@ namespace SqliteDB
             SetProperties();
 
             dbReadToList();
-            ListToDataSet();
+            //ListToDataSet();
 
+            Grid.DataSource = AcList;
+
+            
+            
             //ConnectGoogleDrive.Connect();
 
         }
@@ -166,7 +170,7 @@ namespace SqliteDB
                 CommandText.ExecuteNonQuery();
 
                 AcList.Add(_EntryList.First());
-                ListToDataSet();
+                //ListToDataSet();
 
             }
             else
@@ -185,7 +189,7 @@ namespace SqliteDB
                     AcList.Add(_EntryList.First());
                 }
 
-                ListToDataSet();
+                //ListToDataSet();
             }
           
             sql_con.Close();
