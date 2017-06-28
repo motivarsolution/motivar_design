@@ -18,6 +18,7 @@ namespace SqliteDB
     {
         private List<AccountModel> AcList = new List<AccountModel>();
         private List<AccountModel> EntryList = new List<AccountModel>();
+        private List<AccountModel> UpdateList = new List<AccountModel>();
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
 
@@ -216,16 +217,44 @@ namespace SqliteDB
 
             InsertDatabase(EntryList);
 
+            AccountIDTextbox.Enabled = false;
 
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
+            AccountIDTextbox.Enabled = true;
             AccountIDTextbox.Text = "";
             UsernameTextbox.Text = "";
             PasswordTextbox.Text = "";
             DisplayNameTextbox.Text = "";
             RolesTextbox.Text = "";
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            var query = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
+
+            if (query.ToList().Count() > 0)
+            {
+                MessageBox.Show("Query Result found. :" + query.ToList().Count().ToString());
+
+                UpdateList.Add(new AccountModel
+                {
+                    AccountID = AccountIDTextbox.Text
+                                                ,
+                    Username = UsernameTextbox.Text
+                                                ,
+                    Password = AES.AESController.EncryptText(PasswordTextbox.Text, "MOTIVAR")
+                                                ,
+                    DisplayName = DisplayNameTextbox.Text
+                                                ,
+                    Roles = RolesTextbox.Text
+                });
+            }
+
+
+            
         }
     }
 }
