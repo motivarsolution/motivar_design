@@ -199,6 +199,11 @@ namespace SqliteDB
 
         }
 
+        private void UpdateDatabase()
+        {
+
+        }
+
         private void NewButton_Click(object sender, EventArgs e)
         {
 
@@ -234,10 +239,13 @@ namespace SqliteDB
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             var query = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
+            int index = AcList.FindIndex(a => a.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
+
+
 
             if (query.ToList().Count() > 0)
             {
-                MessageBox.Show("Query Result found. :" + query.ToList().Count().ToString());
+                //MessageBox.Show("Query Result found. :" + query.ToList().Count().ToString());
 
                 UpdateList.Add(new AccountModel
                 {
@@ -253,8 +261,11 @@ namespace SqliteDB
                 });
             }
 
+            AcList[index] = UpdateList.FirstOrDefault();
 
-            
+
+
+
         }
     }
 }
