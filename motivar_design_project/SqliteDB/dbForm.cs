@@ -199,10 +199,7 @@ namespace SqliteDB
 
         }
 
-        private void UpdateDatabase()
-        {
 
-        }
 
         private void NewButton_Click(object sender, EventArgs e)
         {
@@ -240,7 +237,9 @@ namespace SqliteDB
         {
             var query = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
             int index = AcList.FindIndex(a => a.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
+            List<int> _UpdateList = new List<int>();
 
+            
 
 
             if (query.ToList().Count() > 0)
@@ -260,11 +259,59 @@ namespace SqliteDB
                     Roles = RolesTextbox.Text
                 });
             }
-
+            
             AcList[index] = UpdateList.FirstOrDefault();
+            _UpdateList.Add(index);
+            UpdateDatabase(_UpdateList);
 
 
+        }
 
+        private void UpdateDatabase(List<int> UpdateIndex)
+        {
+            SetConnection();
+            sql_con.Open();
+
+            if (UpdateList.Count == 1)
+            {
+
+                SQLiteCommand CommandText = new SQLiteCommand("INSERT INTO Account (AccountID , Username , Password , DisplayName , Roles) VALUES (@AccountID,@Username,@Password,@DisplayName,@Roles)", sql_con);
+
+                CommandText.CommandType = CommandType.Text;
+
+                CommandText.Parameters.Add(new SQLiteParameter("@AccountID", UpdateList.First().AccountID));
+                CommandText.Parameters.Add(new SQLiteParameter("@Username", UpdateList.First().Username));
+                CommandText.Parameters.Add(new SQLiteParameter("@Password", UpdateList.First().Password));
+                CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", UpdateList.First().DisplayName));
+                CommandText.Parameters.Add(new SQLiteParameter("@Roles", UpdateList.First().Roles));
+
+                CommandText.ExecuteNonQuery();
+
+                AcList.Add(UpdateList.First());
+                //ListToDataSet();
+
+            }
+            else
+            {
+                foreach (var item in UpdateList)
+                {
+                    SQLiteCommand CommandText = new SQLiteCommand("INSERT INTO Account (AccountID , Username , Password , DisplayName , Roles) VALUES (@AccountID,@Username,@Password,@DisplayName,@Roles)", sql_con);
+
+                    CommandText.CommandType = CommandType.Text;
+
+                    CommandText.Parameters.Add(new SQLiteParameter("@AccountID", item.AccountID));
+                    CommandText.Parameters.Add(new SQLiteParameter("@Username", item.Username));
+                    CommandText.Parameters.Add(new SQLiteParameter("@Password", item.Password));
+                    CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", item.DisplayName));
+                    CommandText.Parameters.Add(new SQLiteParameter("@Roles", item.Roles));
+                    AcList.Add(UpdateList.First());
+                }
+
+                //ListToDataSet();
+            }
+
+            sql_con.Close();
+            UpdateList.Clear();
 
         }
     }
