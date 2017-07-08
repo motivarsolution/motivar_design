@@ -96,6 +96,7 @@
     <Compile Include="Model\DatabaseController.cs" />
     <Compile Include="Model\dbconn.cs" />
     <Compile Include="Model\dbconnect.cs" />
+    <Compile Include="Model\TransactionAccountModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="dbForm.resx">
