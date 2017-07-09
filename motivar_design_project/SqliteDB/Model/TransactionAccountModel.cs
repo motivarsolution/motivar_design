@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace SqliteDB.Model
 {
-    class TransactionAccountModel
+    public class TransactionAccountModel
     {
+        public string TransactionID { get; set; }
+
+        public AccountModel TransactionAccount { get; set; }
+
+        public string Index { get; set; }
+
+        public string Type { get; set; }
+
     }
 }

@@ -20,6 +20,7 @@ namespace SqliteDB
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
         private BackgroundWorker InsertBackground = new BackgroundWorker();
+        private Queue<TransactionAccountModel> tsQueue = new Queue<TransactionAccountModel>();
 
         public dbForm()
         {
@@ -177,6 +178,8 @@ namespace SqliteDB
             });
 
             //InsertDatabase(EntryList);//Normal
+            //tsQueue.Enqueue();
+           
             InsertBackground.RunWorkerAsync(EntryList);//BackgroundWorker Process
 
         }
