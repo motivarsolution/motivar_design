@@ -84,6 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\DatabaseConnection.cs" />
+    <Compile Include="Controller\QueueTransaction.cs" />
+    <Compile Include="Controller\StoreTransactionAccount.cs" />
     <Compile Include="dbForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,10 +94,8 @@
       <DependentUpon>dbForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\AccountModel.cs" />
-    <Compile Include="Model\ConnectGoogleDrive.cs" />
     <Compile Include="Model\CreateDatabase.cs" />
     <Compile Include="Model\DatabaseController.cs" />
-    <Compile Include="Model\dbconn.cs" />
     <Compile Include="Model\dbconnect.cs" />
     <Compile Include="Model\TransactionAccountModel.cs" />
     <Compile Include="Program.cs" />
@@ -131,6 +132,7 @@
       <Name>AES</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.1\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.1\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SqliteDB.Controller;
 
 namespace SqliteDB
 {
@@ -20,6 +21,8 @@ namespace SqliteDB
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
         private BackgroundWorker InsertBackground = new BackgroundWorker();
+        private TransactionAccountModel tsAcc = new TransactionAccountModel();
+        private QueueTransaction tsAccountQueue = new QueueTransaction();
 
         public dbForm()
         {
@@ -31,6 +34,10 @@ namespace SqliteDB
             dbReadToList();
             Grid.DataSource = AcList;
 
+            //StoreTransactionAccount.LoadFromDatabase(); TEST CONNECT TRANSACTION
+            StoreTransactionAccount.LoadLastTransaction();
+
+            tsAccountQueue.Enqueued += RunningQueues;
         }
 
         private void DefineBackgroundWorker()
@@ -176,8 +183,10 @@ namespace SqliteDB
                 Roles = RolesTextbox.Text
             });
 
+            CreateTransaction(EntryList, "I");
+            AddTransactionIntoQueues();
             //InsertDatabase(EntryList);//Normal
-            InsertBackground.RunWorkerAsync(EntryList);//BackgroundWorker Process
+            //InsertBackground.RunWorkerAsync(EntryList);//BackgroundWorker Process
 
         }
 
@@ -286,7 +295,47 @@ namespace SqliteDB
             
         }
 
+        //--------------------------TRANSACTION USING & QUEUES-------------------------------
 
+        private void CreateTransaction(List<AccountModel> _EntryList, string _Type, string _Index = "0")
+        {
+
+            tsAcc.TransactionID = (int.Parse(StoreTransactionAccount.LastTransactionList.FirstOrDefault().TransactionID) + 1).ToString();
+            tsAcc.Index = _Index;
+            tsAcc.Type = _Type;
+            tsAcc.AccountID = _EntryList.FirstOrDefault().AccountID;
+            tsAcc.Username = _EntryList.FirstOrDefault().Username;
+            tsAcc.Password = _EntryList.FirstOrDefault().Password;
+            tsAcc.DisplayName = _EntryList.FirstOrDefault().DisplayName;
+            tsAcc.Roles = _EntryList.FirstOrDefault().Roles;
+
+        }
+
+        
+
+        private void AddTransactionIntoQueues()
+        {
+            tsAccountQueue.Enqueue(tsAcc);
+            Debug.WriteLine("Enqueued");
+            Debug.WriteLine("Enqueued Count : " + tsAccountQueue.Count);
+        }
+
+        private void RunningQueues(object sender, EventArgs e)
+        {
+            Debug.WriteLine("RunningQueues");
+            Debug.WriteLine("RunningQueues Count : " + tsAccountQueue.Count);
+        }
+
+        private void ReleaseQueues()
+        {
+            //Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
+        }
+
+
+
+
+
+        //-------------------------END USING TRANSACTION----------------------------
 
 
 
@@ -305,7 +354,6 @@ namespace SqliteDB
             List<AccountModel> UpdateList = new List<AccountModel>();
             IEnumerable<AccountModel> query_linq = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
             List<string> UpdateKeyList = new List<string>();
-
             int index = AcList.FindIndex(a => a.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString()); //find index was changed
             
 
@@ -363,6 +411,7 @@ namespace SqliteDB
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to delete.", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question , MessageBoxDefaultButton.Button1);
+
             List<AccountModel> DeleteList = new List<AccountModel>();
             IEnumerable<AccountModel> query_linq = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
             List<string> DeleteKeyList = new List<string>();
