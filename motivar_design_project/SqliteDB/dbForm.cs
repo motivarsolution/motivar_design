@@ -21,7 +21,6 @@ namespace SqliteDB
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
         private BackgroundWorker InsertBackground = new BackgroundWorker();
-        private TransactionAccountModel tsAcc = new TransactionAccountModel();
         private QueueTransaction tsAccountQueue = new QueueTransaction();
 
         public dbForm()
@@ -169,6 +168,7 @@ namespace SqliteDB
         private void NewButton_Click(object sender, EventArgs e)
         {
             List<AccountModel> EntryList = new List<AccountModel>();
+            TransactionAccountModel EntryTransaction = new TransactionAccountModel();
 
             EntryList.Add(new AccountModel()
             {
@@ -183,8 +183,9 @@ namespace SqliteDB
                 Roles = RolesTextbox.Text
             });
 
-            CreateTransaction(EntryList, "I");
-            AddTransactionIntoQueues();
+            EntryTransaction = CreateTransaction(EntryList, "I");
+            AddTransactionIntoQueues(EntryTransaction);
+
             //InsertDatabase(EntryList);//Normal
             //InsertBackground.RunWorkerAsync(EntryList);//BackgroundWorker Process
 
@@ -297,8 +298,9 @@ namespace SqliteDB
 
         //--------------------------TRANSACTION USING & QUEUES-------------------------------
 
-        private void CreateTransaction(List<AccountModel> _EntryList, string _Type, string _Index = "0")
+        private TransactionAccountModel CreateTransaction(List<AccountModel> _EntryList, string _Type, string _Index = "0")
         {
+            TransactionAccountModel tsAcc = new TransactionAccountModel();
 
             tsAcc.TransactionID = (int.Parse(StoreTransactionAccount.LastTransactionList.FirstOrDefault().TransactionID) + 1).ToString();
             tsAcc.Index = _Index;
@@ -309,13 +311,15 @@ namespace SqliteDB
             tsAcc.DisplayName = _EntryList.FirstOrDefault().DisplayName;
             tsAcc.Roles = _EntryList.FirstOrDefault().Roles;
 
+            return tsAcc;
+
         }
 
         
 
-        private void AddTransactionIntoQueues()
+        private void AddTransactionIntoQueues(TransactionAccountModel _tsAcc)
         {
-            tsAccountQueue.Enqueue(tsAcc);
+            tsAccountQueue.Enqueue(_tsAcc);
             Debug.WriteLine("Enqueued");
             Debug.WriteLine("Enqueued Count : " + tsAccountQueue.Count);
         }
@@ -324,11 +328,18 @@ namespace SqliteDB
         {
             Debug.WriteLine("RunningQueues");
             Debug.WriteLine("RunningQueues Count : " + tsAccountQueue.Count);
+            
+            if(tsAccountQueue.Count >= 3)
+            {
+                ReleaseQueues();
+            }
         }
 
         private void ReleaseQueues()
         {
-            //Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
+            tsAccountQueue.Dequeue();
+            Debug.WriteLine("Dequeued");
+            Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
         }
 
 
