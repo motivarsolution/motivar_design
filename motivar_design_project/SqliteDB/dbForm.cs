@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SqliteDB.Controller;
+using Microsoft.Identity.Client;
 
 namespace SqliteDB
 {
@@ -22,6 +23,10 @@ namespace SqliteDB
         private SQLiteCommand sql_cmd;
         private BackgroundWorker InsertBackground = new BackgroundWorker();
         private QueueTransaction tsAccountQueue = new QueueTransaction();
+
+        private static string ClientId = "aca6f1e2-1962-46b9-afb5-e04da8eb4065";
+        public static PublicClientApplication PublicClientApp = new PublicClientApplication(ClientId);
+
         private enum tsStatus
         {
             PREPAIR,
