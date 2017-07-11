@@ -95,7 +95,6 @@
     </Compile>
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\CreateDatabase.cs" />
-    <Compile Include="Model\DatabaseController.cs" />
     <Compile Include="Model\dbconnect.cs" />
     <Compile Include="Model\TransactionAccountModel.cs" />
     <Compile Include="Program.cs" />

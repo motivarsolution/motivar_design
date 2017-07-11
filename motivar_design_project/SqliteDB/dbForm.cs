@@ -319,6 +319,7 @@ namespace SqliteDB
 
         private void AddTransactionIntoQueues(TransactionAccountModel _tsAcc)
         {
+            Debug.WriteLine("+++++ Prepair Enqueued");
             tsAccountQueue.Enqueue(_tsAcc);
             Debug.WriteLine("Enqueued");
             Debug.WriteLine("Enqueued Count : " + tsAccountQueue.Count);
@@ -326,20 +327,27 @@ namespace SqliteDB
 
         private void RunningQueues(object sender, EventArgs e)
         {
-            Debug.WriteLine("RunningQueues");
-            Debug.WriteLine("RunningQueues Count : " + tsAccountQueue.Count);
-            
+            Debug.WriteLine("RunningQueues Event!!!!");
+            Debug.WriteLine("RunningQueues Event!!!! Count : " + tsAccountQueue.Count);
+
             if(tsAccountQueue.Count >= 3)
             {
-                ReleaseQueues();
+                ReleaseQueues(tsAccountQueue.Count);
             }
         }
 
-        private void ReleaseQueues()
+        private void ReleaseQueues(int count)
         {
-            tsAccountQueue.Dequeue();
-            Debug.WriteLine("Dequeued");
-            Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
+            for (int i = 0; i < count; i++)
+            {
+                Debug.WriteLine(">> PreDequeued Count : " + tsAccountQueue.Count);
+                tsAccountQueue.Dequeue();
+                Debug.WriteLine("Dequeued");
+                Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
+            }
+
+            Debug.WriteLine("------------------ END Dequeued -----------------");
+
         }
 
 

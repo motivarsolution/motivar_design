@@ -11,10 +11,16 @@ namespace SqliteDB.Controller
     {
         private readonly Queue<TransactionAccountModel> queue = new Queue<TransactionAccountModel>();
         public event EventHandler Enqueued;
+        public event EventHandler Dequeued;
         protected virtual void OnEnqueued()
         {
             if (Enqueued != null)
                 Enqueued(this, EventArgs.Empty);
+        }
+        protected virtual void OnDequeued()
+        {
+            if (Dequeued != null)
+                Dequeued(this, EventArgs.Empty);
         }
         public virtual void Enqueue(TransactionAccountModel item)
         {
@@ -31,7 +37,7 @@ namespace SqliteDB.Controller
         public virtual TransactionAccountModel Dequeue()
         {
             TransactionAccountModel item = queue.Dequeue();
-            OnEnqueued();
+            OnDequeued();
             return item;
         }
 
