@@ -22,6 +22,16 @@ namespace SqliteDB
         private SQLiteCommand sql_cmd;
         private BackgroundWorker InsertBackground = new BackgroundWorker();
         private QueueTransaction tsAccountQueue = new QueueTransaction();
+        private enum tsStatus
+        {
+            PREPAIR,
+            COMPLETE,
+            INQUEUE,
+            REJECT,
+            QUEUE_ERROR,
+            DB_ERROR,
+            BG_ERROR
+        };
 
         public dbForm()
         {
@@ -298,7 +308,7 @@ namespace SqliteDB
 
         //--------------------------TRANSACTION USING & QUEUES-------------------------------
 
-        private TransactionAccountModel CreateTransaction(List<AccountModel> _EntryList, string _Type, string _Index = "0")
+        private TransactionAccountModel CreateTransaction(List<AccountModel> _EntryList, string _Type, string _Index = "0" , tsStatus _Status = tsStatus.PREPAIR)
         {
             TransactionAccountModel tsAcc = new TransactionAccountModel();
 
@@ -310,6 +320,7 @@ namespace SqliteDB
             tsAcc.Password = _EntryList.FirstOrDefault().Password;
             tsAcc.DisplayName = _EntryList.FirstOrDefault().DisplayName;
             tsAcc.Roles = _EntryList.FirstOrDefault().Roles;
+            tsAcc.Status = _Status.ToString();
 
             return tsAcc;
 
@@ -350,6 +361,9 @@ namespace SqliteDB
 
         }
                 //>>>>>>>>>>>>> QUEUE END >>>>>>>>>>>>>>
+
+        //BackgroundWorker DoWork
+        //BackgroundWorker Complete
 
 
 

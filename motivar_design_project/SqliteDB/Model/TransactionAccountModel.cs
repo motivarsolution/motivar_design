@@ -24,6 +24,8 @@ namespace SqliteDB.Model
 
         public string Roles { get; set; }
 
+        public string Status { get; set; }
+
 
     }
 }
