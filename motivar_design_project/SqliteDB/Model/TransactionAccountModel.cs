@@ -26,6 +26,14 @@ namespace SqliteDB.Model
 
         public string Status { get; set; }
 
+        public string CreatedBy { get; set; }
+
+        public string ChangedBy { get; set; }
+
+        public string CreatedDateTime { get; set; }
+
+        public string ChangedDateTime { get; set; }
+
 
     }
 }

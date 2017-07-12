@@ -18,6 +18,8 @@ namespace SqliteDB
 {
     public partial class dbForm : Form
     {
+        private const string USERNAME = "UserTEST";
+
         private List<AccountModel> AcList = new List<AccountModel>();
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
@@ -326,6 +328,15 @@ namespace SqliteDB
             tsAcc.DisplayName = _EntryList.FirstOrDefault().DisplayName;
             tsAcc.Roles = _EntryList.FirstOrDefault().Roles;
             tsAcc.Status = _Status.ToString();
+
+            if(_Type == "I")
+            {
+                tsAcc.CreatedBy = USERNAME;
+                tsAcc.CreatedDateTime = DateTime.Now.ToString();
+            }
+             
+            tsAcc.ChangedBy = USERNAME;
+            tsAcc.ChangedDateTime = DateTime.Now.ToString();
 
             return tsAcc;
 

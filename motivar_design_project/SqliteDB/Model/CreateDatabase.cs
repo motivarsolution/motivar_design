@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SqliteDB.Controller;
+using System.Data;
 
 namespace SqliteDB.Model
 {
@@ -63,6 +65,24 @@ namespace SqliteDB.Model
            
         }
 
-        //public static 
+        public static void CreateAccountTable()
+        {
+            DatabaseConnection.SetConnection();
+            DatabaseConnection.sql_con.Open();
+
+            SQLiteCommand CommandText = new SQLiteCommand("CREATE TABLE Account " +
+                                                          "AccountID VARCHAR(10) PRIMARY KEY NOT NULL UNIQUE, " +
+                                                          "Username VARCHAR (20)," +
+                                                          "Password VARCHAR (20)," +
+                                                          "DisplayName VARCHAR (20)," +
+                                                          "Roles       VARCHAR (20) "
+                                                          , DatabaseConnection.sql_con);
+
+            CommandText.ExecuteNonQuery();
+
+
+            DatabaseConnection.sql_con.Close();
+        }
+
     }
 }
