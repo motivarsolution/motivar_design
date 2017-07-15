@@ -24,6 +24,7 @@ namespace SqliteDB
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
         private BackgroundWorker InsertBackground = new BackgroundWorker();
+        private BackgroundWorker TransactionWorking = new BackgroundWorker();
         private QueueTransaction tsAccountQueue = new QueueTransaction();
 
         private static string ClientId = "aca6f1e2-1962-46b9-afb5-e04da8eb4065";
@@ -61,6 +62,10 @@ namespace SqliteDB
             InsertBackground.DoWork += InsertDatabaseBackgroundWorker_DoWork;
             InsertBackground.ProgressChanged += InsertDatabaseBackgroundWorker_ProgressChanged;
             InsertBackground.RunWorkerCompleted += InsertDatabaseBackgroundWorker_Complete;
+
+            TransactionWorking.DoWork += TransactionWorking_DoWork;
+            TransactionWorking.ProgressChanged += TransactionWorking_ProgressChanged;
+            TransactionWorking.RunWorkerCompleted += TransactionWorking_Complete;
         }
 
         private void dbReadToList() //Important
@@ -208,6 +213,44 @@ namespace SqliteDB
 
         }
 
+
+        private void TransactionWorking_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Queue<TransactionAccountModel> tsQ = e.Argument as Queue<TransactionAccountModel>;
+
+            foreach (var item in tsQ)
+            {
+                switch (item.Type)
+                {
+                    case "I":
+                        {
+                            break;
+                        }
+                    case "U":
+                        {
+                            break;
+                        }
+                    case "D":
+                        {
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+
+        }
+        private void TransactionWorking_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+        private void TransactionWorking_Complete(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
         private void InsertDatabase(List<AccountModel> _EntryList)//Should not List beccause Input each 1 data set
         {
             SetConnection();
@@ -346,34 +389,35 @@ namespace SqliteDB
                 //>>>>>>>>>>>>> QUEUE >>>>>>>>>>>>>>
         private void AddTransactionIntoQueues(TransactionAccountModel _tsAcc)
         {
-            Debug.WriteLine("+++++ Prepair Enqueued");
+            //Debug.WriteLine("+++++ Prepair Enqueued");
             tsAccountQueue.Enqueue(_tsAcc);
-            Debug.WriteLine("Enqueued");
-            Debug.WriteLine("Enqueued Count : " + tsAccountQueue.Count);
+            //Debug.WriteLine("Enqueued");
+            //Debug.WriteLine("Enqueued Count : " + tsAccountQueue.Count);
         }
             
         private void RunningQueues(object sender, EventArgs e)
         {
-            Debug.WriteLine("RunningQueues Event!!!!");
-            Debug.WriteLine("RunningQueues Event!!!! Count : " + tsAccountQueue.Count);
+            //Debug.WriteLine("RunningQueues Event!!!!");
+            //Debug.WriteLine("RunningQueues Event!!!! Count : " + tsAccountQueue.Count);
 
-            if(tsAccountQueue.Count >= 3)
-            {
-                ReleaseQueues(tsAccountQueue.Count);
-            }
+            //if(tsAccountQueue.Count >= 3)
+            //{
+            //    ReleaseQueues(tsAccountQueue.Count);
+            //}
+            TransactionWorking.RunWorkerAsync(tsAccountQueue);
         }
 
         private void ReleaseQueues(int count)
         {
             for (int i = 0; i < count; i++)
             {
-                Debug.WriteLine(">> PreDequeued Count : " + tsAccountQueue.Count);
+                //Debug.WriteLine(">> PreDequeued Count : " + tsAccountQueue.Count);
                 tsAccountQueue.Dequeue();
-                Debug.WriteLine("Dequeued");
-                Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
+                //Debug.WriteLine("Dequeued");
+                //Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
             }
 
-            Debug.WriteLine("------------------ END Dequeued -----------------");
+            //Debug.WriteLine("------------------ END Dequeued -----------------");
 
         }
                 //>>>>>>>>>>>>> QUEUE END >>>>>>>>>>>>>>
