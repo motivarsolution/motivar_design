@@ -10,6 +10,7 @@ namespace SqliteDB.Controller
     public class QueueTransaction
     {
         private readonly Queue<TransactionAccountModel> queue = new Queue<TransactionAccountModel>();
+        private List<TransactionAccountModel> QueueItemList = new List<TransactionAccountModel>();
         public event EventHandler Enqueued;
         public event EventHandler Dequeued;
         protected virtual void OnEnqueued()
@@ -39,6 +40,18 @@ namespace SqliteDB.Controller
             TransactionAccountModel item = queue.Dequeue();
             OnDequeued();
             return item;
+        }
+
+        public TransactionAccountModel GetQueueItem()
+        {
+            TransactionAccountModel item = queue.Peek();
+            return item;
+        }
+
+        public List<TransactionAccountModel> GetQueueItemList()
+        {
+            QueueItemList = queue.ToList();
+            return QueueItemList;
         }
 
     }

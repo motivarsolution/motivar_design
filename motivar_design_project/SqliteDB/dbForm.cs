@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SqliteDB.Controller;
 using Microsoft.Identity.Client;
+using System.Collections.ObjectModel;
 
 namespace SqliteDB
 {
@@ -55,6 +56,8 @@ namespace SqliteDB
             StoreTransactionAccount.LoadLastTransaction();
 
             tsAccountQueue.Enqueued += RunningQueues;
+
+
         }
 
         private void DefineBackgroundWorker()
@@ -213,43 +216,6 @@ namespace SqliteDB
 
         }
 
-
-        private void TransactionWorking_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Queue<TransactionAccountModel> tsQ = e.Argument as Queue<TransactionAccountModel>;
-
-            foreach (var item in tsQ)
-            {
-                switch (item.Type)
-                {
-                    case "I":
-                        {
-                            break;
-                        }
-                    case "U":
-                        {
-                            break;
-                        }
-                    case "D":
-                        {
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
-                }
-            }
-
-        }
-        private void TransactionWorking_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-
-        }
-        private void TransactionWorking_Complete(object sender, RunWorkerCompletedEventArgs e)
-        {
-
-        }
 
         private void InsertDatabase(List<AccountModel> _EntryList)//Should not List beccause Input each 1 data set
         {
@@ -420,18 +386,97 @@ namespace SqliteDB
             //Debug.WriteLine("------------------ END Dequeued -----------------");
 
         }
-                //>>>>>>>>>>>>> QUEUE END >>>>>>>>>>>>>>
+        //>>>>>>>>>>>>> QUEUE END >>>>>>>>>>>>>>
 
         //BackgroundWorker DoWork
         //BackgroundWorker Complete
 
+        private void TransactionWorking_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<TransactionAccountModel> TransactionQueue = tsAccountQueue.GetQueueItemList();
+
+            foreach (var item in TransactionQueue)
+            {
+                switch (item.Type)
+                {
+                    case "I":
+                        {
+                            //Insert Database
+                            Debug.WriteLine("Insert");
+                            break;
+                        }
+                    case "U":
+                        {
+                            break;
+                        }
+                    case "D":
+                        {
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+
+            e.Result = TransactionQueue;
+
+        }
+        private void TransactionWorking_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+        private void TransactionWorking_Complete(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                List<TransactionAccountModel> ResultList = e.Result as List<TransactionAccountModel>;
+
+                foreach (var item in ResultList)
+                {
+                    switch (item.Type)
+                    {
+                        case "I":
+                            {
+                                AcList.Add(new AccountModel
+                                {
+                                    AccountID = item.AccountID,
+                                    Username = item.Username,
+                                    Password = item.Password,
+                                    DisplayName = item.DisplayName,
+                                    Roles = item.Roles
+                                });
+
+                                AccountIDTextbox.Enabled = false;
+                                RefreshDataGridView();
+
+                                break;
+                            }
+                        case "U":
+                            {
+                                break;
+                            }
+                        case "D":
+                            {
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
+                    }
+                }
+            }
+
+
+            ReleaseQueues(tsAccountQueue.Count);
+        }
 
 
 
 
         //-------------------------END USING TRANSACTION----------------------------
-
-
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
@@ -449,7 +494,6 @@ namespace SqliteDB
             IEnumerable<AccountModel> query_linq = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
             List<string> UpdateKeyList = new List<string>();
             int index = AcList.FindIndex(a => a.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString()); //find index was changed
-            
 
             if (query_linq.ToList().Count() > 0)
             {
