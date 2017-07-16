@@ -388,9 +388,6 @@ namespace SqliteDB
         }
         //>>>>>>>>>>>>> QUEUE END >>>>>>>>>>>>>>
 
-        //BackgroundWorker DoWork
-        //BackgroundWorker Complete
-
         private void TransactionWorking_DoWork(object sender, DoWorkEventArgs e)
         {
             List<TransactionAccountModel> TransactionQueue = tsAccountQueue.GetQueueItemList();
