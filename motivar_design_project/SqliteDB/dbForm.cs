@@ -479,6 +479,15 @@ namespace SqliteDB
                             }
                         case "U":
                             {
+                                AcList[Int16.Parse(item.IndexLine)].AccountID = item.AccountID;
+                                AcList[Int16.Parse(item.IndexLine)].Username = item.Username;
+                                AcList[Int16.Parse(item.IndexLine)].Password = item.Password;
+                                AcList[Int16.Parse(item.IndexLine)].DisplayName = item.DisplayName;
+                                AcList[Int16.Parse(item.IndexLine)].Roles = item.Roles;
+
+                                AccountIDTextbox.Enabled = false;
+                                RefreshDataGridView();
+                                item.Status = tsStatus.COMPLETE.ToString();
                                 break;
                             }
                         case "D":
