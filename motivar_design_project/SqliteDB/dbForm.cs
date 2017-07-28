@@ -20,8 +20,6 @@ namespace SqliteDB
 {
     public partial class dbForm : Form
     {
-        
-
         private List<AccountModel> AcList = new List<AccountModel>();
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
@@ -44,21 +42,29 @@ namespace SqliteDB
         };
 
         public dbForm()
-        {
-            InitializeComponent();
+        {        
 
+            InitializeComponent();
 
             DefineBackgroundWorker();
             SetProperties();
             dbReadToList();
             Grid.DataSource = AcList;
 
-            //StoreTransactionAccount.LoadFromDatabase(); TEST CONNECT TRANSACTION
             StoreTransactionAccount.LoadLastTransaction();
 
             tsAccountQueue.Enqueued += RunningQueues;
 
+        }
 
+
+        private void dbForm_Load(object sender, EventArgs e)
+        {
+            if (!DatabaseVersionCheck.Checked()) //Database Version Checking
+            {
+                MessageBox.Show("Database is Not Latest Version.", "Database Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CloseApp();
+            }
         }
 
         private void DefineBackgroundWorker()
@@ -359,7 +365,7 @@ namespace SqliteDB
         {
             TransactionAccountModel tsAcc = new TransactionAccountModel();
 
-            tsAcc.TransactionID = (int.Parse(StoreTransactionAccount.LastTransactionList.FirstOrDefault().TransactionID) + 1).ToString();
+            tsAcc.TransactionID = (int.Parse(StoreTransactionAccount.LastTransaction.TransactionID) + 1).ToString();
             tsAcc.IndexLine = _IndexLine;
             tsAcc.Type = _Type;
             tsAcc.AccountID = _EntryList.FirstOrDefault().AccountID;
@@ -372,18 +378,15 @@ namespace SqliteDB
             if(_Type == "I")
             {
                 tsAcc.CreatedBy = GlobalConstant.USERNAME;
-                tsAcc.ChangedBy = GlobalConstant.USERNAME;
                 tsAcc.CreatedDateTime = DateTime.Now.ToString();
-                tsAcc.ChangedDateTime = DateTime.Now.ToString();
             }
-            else
+            else //U D
             {
                 tsAcc.ChangedBy = GlobalConstant.USERNAME;
                 tsAcc.ChangedDateTime = DateTime.Now.ToString();
             }
-             
-            
 
+            StoreTransactionAccount.LastTransaction = tsAcc;
             return tsAcc;
 
         }
@@ -424,7 +427,6 @@ namespace SqliteDB
                         {
                             //Insert Database
                             InsertDatabaseTS(item);
-                            Debug.WriteLine("Insert");
                             break;
                         }
                     case "U":
@@ -492,6 +494,11 @@ namespace SqliteDB
                             }
                         case "D":
                             {
+                                AcList.RemoveAt(Int16.Parse(item.IndexLine));
+
+                                AccountIDTextbox.Enabled = false;
+                                RefreshDataGridView();
+                                item.Status = tsStatus.COMPLETE.ToString();
                                 break;
                             }
                         default:
@@ -566,6 +573,7 @@ namespace SqliteDB
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             List<AccountModel> UpdateList = new List<AccountModel>();
+            TransactionAccountModel UpdateTransaction = new TransactionAccountModel();
             IEnumerable<AccountModel> query_linq = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
             List<string> UpdateKeyList = new List<string>();
             int index = AcList.FindIndex(a => a.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString()); //find index was changed
@@ -585,14 +593,15 @@ namespace SqliteDB
                     Roles = RolesTextbox.Text
                 });
             }
-            
-            
-            UpdateKeyList.Add(UpdateList.FirstOrDefault().AccountID);
-            UpdateDatabase(UpdateList , UpdateKeyList);
 
-            AcList[index] = UpdateList.FirstOrDefault();
+            UpdateTransaction = CreateTransaction(UpdateList, "U" , index.ToString());
+            AddTransactionIntoQueues(UpdateTransaction);
 
-            RefreshDataGridView();
+            //UpdateKeyList.Add(UpdateList.FirstOrDefault().AccountID);
+            //UpdateDatabase(UpdateList , UpdateKeyList);
+
+            //AcList[index] = UpdateList.FirstOrDefault();
+            //RefreshDataGridView();
         }
 
         private void UpdateDatabaseTS(TransactionAccountModel _UpdateTS)
@@ -646,7 +655,7 @@ namespace SqliteDB
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to delete.", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question , MessageBoxDefaultButton.Button1);
-
+            TransactionAccountModel DeleteTransaction = new TransactionAccountModel();
             List<AccountModel> DeleteList = new List<AccountModel>();
             IEnumerable<AccountModel> query_linq = AcList.Where(x => x.AccountID == Grid.CurrentRow.Cells["AccountID"].Value.ToString());
             List<string> DeleteKeyList = new List<string>();
@@ -671,12 +680,14 @@ namespace SqliteDB
                     });
                 }
 
-                
-                DeleteKeyList.Add(DeleteList.FirstOrDefault().AccountID);
-                DeleteDatabase(DeleteList, DeleteKeyList);
+                DeleteTransaction = CreateTransaction(DeleteList, "D", index.ToString());
+                AddTransactionIntoQueues(DeleteTransaction);
 
-                AcList.RemoveAt(index);
-                RefreshDataGridView();
+                //DeleteKeyList.Add(DeleteList.FirstOrDefault().AccountID);
+                //DeleteDatabase(DeleteList, DeleteKeyList);
+
+                //AcList.RemoveAt(index);
+                //RefreshDataGridView();
             }
 
         }
@@ -727,5 +738,12 @@ namespace SqliteDB
 
             sql_con.Close();
         }
+
+        private void CloseApp()
+        {
+            Application.Exit();
+            Debug.WriteLine("Application Close");
+        }
+
     }
 }

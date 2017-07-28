@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\DatabaseConnection.cs" />
+    <Compile Include="Controller\DatabaseVersionCheck.cs" />
     <Compile Include="Controller\QueueTransaction.cs" />
     <Compile Include="Controller\StoreTransactionAccount.cs" />
     <Compile Include="dbForm.cs">
@@ -98,6 +99,7 @@
     </Compile>
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\CreateDatabase.cs" />
+    <Compile Include="Model\DatabaseVersionModel.cs" />
     <Compile Include="Model\dbconnect.cs" />
     <Compile Include="Model\TransactionAccountModel.cs" />
     <Compile Include="Program.cs" />

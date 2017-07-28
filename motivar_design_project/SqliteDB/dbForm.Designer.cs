@@ -53,7 +53,7 @@
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.Grid.Location = new System.Drawing.Point(22, 10);
-            this.Grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Grid.Margin = new System.Windows.Forms.Padding(2);
             this.Grid.MultiSelect = false;
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
@@ -67,7 +67,7 @@
             // 
             this.SelectedTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectedTextbox.Location = new System.Drawing.Point(22, 139);
-            this.SelectedTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SelectedTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.SelectedTextbox.Multiline = true;
             this.SelectedTextbox.Name = "SelectedTextbox";
             this.SelectedTextbox.Size = new System.Drawing.Size(590, 41);
@@ -87,7 +87,7 @@
             // 
             this.AccountIDTextbox.Enabled = false;
             this.AccountIDTextbox.Location = new System.Drawing.Point(98, 207);
-            this.AccountIDTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AccountIDTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.AccountIDTextbox.Name = "AccountIDTextbox";
             this.AccountIDTextbox.Size = new System.Drawing.Size(139, 20);
             this.AccountIDTextbox.TabIndex = 3;
@@ -105,7 +105,7 @@
             // UsernameTextbox
             // 
             this.UsernameTextbox.Location = new System.Drawing.Point(98, 238);
-            this.UsernameTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UsernameTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.UsernameTextbox.Name = "UsernameTextbox";
             this.UsernameTextbox.Size = new System.Drawing.Size(139, 20);
             this.UsernameTextbox.TabIndex = 5;
@@ -123,7 +123,7 @@
             // PasswordTextbox
             // 
             this.PasswordTextbox.Location = new System.Drawing.Point(98, 268);
-            this.PasswordTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PasswordTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.PasswordTextbox.Name = "PasswordTextbox";
             this.PasswordTextbox.PasswordChar = '*';
             this.PasswordTextbox.Size = new System.Drawing.Size(139, 20);
@@ -142,7 +142,7 @@
             // DisplayNameTextbox
             // 
             this.DisplayNameTextbox.Location = new System.Drawing.Point(99, 301);
-            this.DisplayNameTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DisplayNameTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.DisplayNameTextbox.Name = "DisplayNameTextbox";
             this.DisplayNameTextbox.Size = new System.Drawing.Size(138, 20);
             this.DisplayNameTextbox.TabIndex = 9;
@@ -160,7 +160,7 @@
             // RolesTextbox
             // 
             this.RolesTextbox.Location = new System.Drawing.Point(99, 332);
-            this.RolesTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RolesTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.RolesTextbox.Name = "RolesTextbox";
             this.RolesTextbox.Size = new System.Drawing.Size(138, 20);
             this.RolesTextbox.TabIndex = 11;
@@ -168,7 +168,7 @@
             // UpdateButton
             // 
             this.UpdateButton.Location = new System.Drawing.Point(75, 377);
-            this.UpdateButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UpdateButton.Margin = new System.Windows.Forms.Padding(2);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(56, 28);
             this.UpdateButton.TabIndex = 12;
@@ -179,7 +179,7 @@
             // NewButton
             // 
             this.NewButton.Location = new System.Drawing.Point(135, 377);
-            this.NewButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NewButton.Margin = new System.Windows.Forms.Padding(2);
             this.NewButton.Name = "NewButton";
             this.NewButton.Size = new System.Drawing.Size(56, 28);
             this.NewButton.TabIndex = 13;
@@ -190,7 +190,7 @@
             // ClearButton
             // 
             this.ClearButton.Location = new System.Drawing.Point(15, 377);
-            this.ClearButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClearButton.Margin = new System.Windows.Forms.Padding(2);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(56, 28);
             this.ClearButton.TabIndex = 14;
@@ -201,9 +201,9 @@
             // groupBox1
             // 
             this.groupBox1.Location = new System.Drawing.Point(15, 189);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(248, 171);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
@@ -241,9 +241,10 @@
             this.Controls.Add(this.SelectedTextbox);
             this.Controls.Add(this.Grid);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "dbForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.dbForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

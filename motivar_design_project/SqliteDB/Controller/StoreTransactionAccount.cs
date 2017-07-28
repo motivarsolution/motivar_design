@@ -12,7 +12,7 @@ namespace SqliteDB.Controller
     {
         private static SQLiteCommand sql_cmd;
         public static List<TransactionAccountModel> tsAccountList = new List<TransactionAccountModel>();
-        public static List<TransactionAccountModel> LastTransactionList = new List<TransactionAccountModel>();
+        public static TransactionAccountModel LastTransaction = new TransactionAccountModel();
 
         public static void LoadFromDatabase() //Not Acc because should doing transaction
         {
@@ -70,24 +70,21 @@ namespace SqliteDB.Controller
                 {
                     while (rdr.Read())
                     {
-                        LastTransactionList.Add(new TransactionAccountModel
-                        {
-                            TransactionID = rdr["TransactionID"].ToString(),
+                        LastTransaction.TransactionID = rdr["TransactionID"].ToString();
 
-                            IndexLine = rdr["IndexLine"].ToString(),
+                        LastTransaction.IndexLine = rdr["IndexLine"].ToString();
 
-                            Type = rdr["Type"].ToString(),
+                        LastTransaction.Type = rdr["Type"].ToString();
 
-                            AccountID = rdr["AccountID"].ToString()
-                                                      ,
-                            Username = rdr["Username"].ToString()
-                                                      ,
-                            Password = rdr["Password"].ToString()
-                                                      ,
-                            DisplayName = rdr["DisplayName"].ToString()
-                                                      ,
-                            Roles = rdr["Roles"].ToString()
-                        });
+                        LastTransaction.AccountID = rdr["AccountID"].ToString();
+
+                        LastTransaction.Username = rdr["Username"].ToString();
+
+                        LastTransaction.Password = rdr["Password"].ToString();
+
+                        LastTransaction.DisplayName = rdr["DisplayName"].ToString();
+
+                        LastTransaction.Roles = rdr["Roles"].ToString();
                     }
                 }
             }

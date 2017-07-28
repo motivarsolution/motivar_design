@@ -9,5 +9,7 @@ namespace SqliteDB.Utility
     public static class GlobalConstant
     {
         public static string USERNAME = "UserTEST";
+
+        public static double DB_VERSION = 1.01;
     }
 }
