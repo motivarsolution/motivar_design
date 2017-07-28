@@ -32,7 +32,7 @@ namespace SqliteDB.Controller
                         {
                             TransactionID = rdr["TransactionID"].ToString(),
 
-                            Index = rdr["Index"].ToString(),
+                            IndexLine = rdr["IndexLine"].ToString(),
 
                             Type = rdr["Type"].ToString(),
 
@@ -74,7 +74,7 @@ namespace SqliteDB.Controller
                         {
                             TransactionID = rdr["TransactionID"].ToString(),
 
-                            Index = rdr["Index"].ToString(),
+                            IndexLine = rdr["IndexLine"].ToString(),
 
                             Type = rdr["Type"].ToString(),
 

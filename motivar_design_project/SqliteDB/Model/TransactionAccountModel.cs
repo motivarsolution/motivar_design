@@ -10,7 +10,7 @@ namespace SqliteDB.Model
     {
         public string TransactionID { get; set; }
 
-        public string Index { get; set; }
+        public string IndexLine { get; set; }
 
         public string Type { get; set; }
 

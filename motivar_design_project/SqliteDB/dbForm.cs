@@ -14,12 +14,13 @@ using System.Windows.Forms;
 using SqliteDB.Controller;
 using Microsoft.Identity.Client;
 using System.Collections.ObjectModel;
+using SqliteDB.Utility;
 
 namespace SqliteDB
 {
     public partial class dbForm : Form
     {
-        private const string USERNAME = "UserTEST";
+        
 
         private List<AccountModel> AcList = new List<AccountModel>();
         private SQLiteConnection sql_con;
@@ -216,6 +217,36 @@ namespace SqliteDB
 
         }
 
+        private void InsertDatabaseTS(TransactionAccountModel _InsertTS)
+        {
+            DatabaseConnection.SetConnection();
+            DatabaseConnection.sql_con.Open();
+
+            try
+            {
+                SQLiteCommand CommandText = new SQLiteCommand("INSERT " +
+                                                              "INTO Account (AccountID , Username , Password , DisplayName , Roles) " +
+                                                              "VALUES (@AccountID,@Username,@Password,@DisplayName,@Roles)", DatabaseConnection.sql_con);
+
+                CommandText.CommandType = CommandType.Text;
+
+                CommandText.Parameters.Add(new SQLiteParameter("@AccountID", _InsertTS.AccountID));
+                CommandText.Parameters.Add(new SQLiteParameter("@Username", _InsertTS.Username));
+                CommandText.Parameters.Add(new SQLiteParameter("@Password", _InsertTS.Password));
+                CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", _InsertTS.DisplayName));
+                CommandText.Parameters.Add(new SQLiteParameter("@Roles", _InsertTS.Roles));
+
+                CommandText.ExecuteNonQuery();
+
+                DatabaseConnection.sql_con.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Username Existing");
+                return;
+            }
+            
+        }
 
         private void InsertDatabase(List<AccountModel> _EntryList)//Should not List beccause Input each 1 data set
         {
@@ -324,12 +355,12 @@ namespace SqliteDB
 
         //--------------------------TRANSACTION USING & QUEUES-------------------------------
 
-        private TransactionAccountModel CreateTransaction(List<AccountModel> _EntryList, string _Type, string _Index = "0" , tsStatus _Status = tsStatus.PREPAIR)
+        private TransactionAccountModel CreateTransaction(List<AccountModel> _EntryList, string _Type, string _IndexLine = "0" , tsStatus _Status = tsStatus.PREPAIR)
         {
             TransactionAccountModel tsAcc = new TransactionAccountModel();
 
             tsAcc.TransactionID = (int.Parse(StoreTransactionAccount.LastTransactionList.FirstOrDefault().TransactionID) + 1).ToString();
-            tsAcc.Index = _Index;
+            tsAcc.IndexLine = _IndexLine;
             tsAcc.Type = _Type;
             tsAcc.AccountID = _EntryList.FirstOrDefault().AccountID;
             tsAcc.Username = _EntryList.FirstOrDefault().Username;
@@ -340,12 +371,18 @@ namespace SqliteDB
 
             if(_Type == "I")
             {
-                tsAcc.CreatedBy = USERNAME;
+                tsAcc.CreatedBy = GlobalConstant.USERNAME;
+                tsAcc.ChangedBy = GlobalConstant.USERNAME;
                 tsAcc.CreatedDateTime = DateTime.Now.ToString();
+                tsAcc.ChangedDateTime = DateTime.Now.ToString();
+            }
+            else
+            {
+                tsAcc.ChangedBy = GlobalConstant.USERNAME;
+                tsAcc.ChangedDateTime = DateTime.Now.ToString();
             }
              
-            tsAcc.ChangedBy = USERNAME;
-            tsAcc.ChangedDateTime = DateTime.Now.ToString();
+            
 
             return tsAcc;
 
@@ -355,21 +392,11 @@ namespace SqliteDB
                 //>>>>>>>>>>>>> QUEUE >>>>>>>>>>>>>>
         private void AddTransactionIntoQueues(TransactionAccountModel _tsAcc)
         {
-            //Debug.WriteLine("+++++ Prepair Enqueued");
             tsAccountQueue.Enqueue(_tsAcc);
-            //Debug.WriteLine("Enqueued");
-            //Debug.WriteLine("Enqueued Count : " + tsAccountQueue.Count);
         }
             
         private void RunningQueues(object sender, EventArgs e)
         {
-            //Debug.WriteLine("RunningQueues Event!!!!");
-            //Debug.WriteLine("RunningQueues Event!!!! Count : " + tsAccountQueue.Count);
-
-            //if(tsAccountQueue.Count >= 3)
-            //{
-            //    ReleaseQueues(tsAccountQueue.Count);
-            //}
             TransactionWorking.RunWorkerAsync(tsAccountQueue);
         }
 
@@ -377,13 +404,10 @@ namespace SqliteDB
         {
             for (int i = 0; i < count; i++)
             {
-                //Debug.WriteLine(">> PreDequeued Count : " + tsAccountQueue.Count);
-                tsAccountQueue.Dequeue();
-                //Debug.WriteLine("Dequeued");
-                //Debug.WriteLine("Dequeued Count : " + tsAccountQueue.Count);
-            }
 
-            //Debug.WriteLine("------------------ END Dequeued -----------------");
+                tsAccountQueue.Dequeue();
+            }
+            
 
         }
         //>>>>>>>>>>>>> QUEUE END >>>>>>>>>>>>>>
@@ -399,15 +423,18 @@ namespace SqliteDB
                     case "I":
                         {
                             //Insert Database
+                            InsertDatabaseTS(item);
                             Debug.WriteLine("Insert");
                             break;
                         }
                     case "U":
                         {
+                            UpdateDatabaseTS(item);
                             break;
                         }
                     case "D":
                         {
+                            DeleteDatabaseTS(item);
                             break;
                         }
                     default:
@@ -447,7 +474,7 @@ namespace SqliteDB
 
                                 AccountIDTextbox.Enabled = false;
                                 RefreshDataGridView();
-
+                                item.Status = tsStatus.COMPLETE.ToString();
                                 break;
                             }
                         case "U":
@@ -463,14 +490,56 @@ namespace SqliteDB
                                 break;
                             }
                     }
+
+                    TransactionDatabase(item);
                 }
             }
 
 
             ReleaseQueues(tsAccountQueue.Count);
+            
         }
 
+        private void TransactionDatabase(TransactionAccountModel _TS)
+        {
+            DatabaseConnection.SetConnection();
+            DatabaseConnection.sql_con.Open();
 
+            SQLiteCommand CommandText = new SQLiteCommand("INSERT " +
+                                                              "INTO TransactionAccount (TransactionID , IndexLine , Type , AccountID , Username , Password , DisplayName , Roles , Status , " +
+                                                              "CreatedBy , ChangedBy , CreatedDateTime , ChangedDateTime) " +
+                                                              "VALUES (@TransactionID,@IndexLine,@Type,@AccountID,@Username,@Password,@DisplayName,@Roles,@Status," +
+                                                              "@CreatedBy,@ChangedBy,@CreatedDateTime,@ChangedDateTime)", DatabaseConnection.sql_con);
+
+            CommandText.CommandType = CommandType.Text;
+            CommandText.Parameters.Add(new SQLiteParameter("@TransactionID", _TS.TransactionID));
+            CommandText.Parameters.Add(new SQLiteParameter("@IndexLine", _TS.IndexLine));
+            CommandText.Parameters.Add(new SQLiteParameter("@Type", _TS.Type));
+            CommandText.Parameters.Add(new SQLiteParameter("@AccountID", _TS.AccountID));
+            CommandText.Parameters.Add(new SQLiteParameter("@Username", _TS.Username));
+            CommandText.Parameters.Add(new SQLiteParameter("@Password", _TS.Password));
+            CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", _TS.DisplayName));
+            CommandText.Parameters.Add(new SQLiteParameter("@Roles", _TS.Roles));
+            CommandText.Parameters.Add(new SQLiteParameter("@Status", _TS.Status));
+            CommandText.Parameters.Add(new SQLiteParameter("@CreatedBy", _TS.CreatedBy));
+            CommandText.Parameters.Add(new SQLiteParameter("@ChangedBy", _TS.ChangedBy));
+            CommandText.Parameters.Add(new SQLiteParameter("@CreatedDateTime", _TS.CreatedDateTime));
+            CommandText.Parameters.Add(new SQLiteParameter("@ChangedDateTime", _TS.ChangedDateTime));
+
+            CommandText.ExecuteNonQuery();
+
+            DatabaseConnection.sql_con.Close();
+
+
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
 
 
         //-------------------------END USING TRANSACTION----------------------------
@@ -517,6 +586,28 @@ namespace SqliteDB
             RefreshDataGridView();
         }
 
+        private void UpdateDatabaseTS(TransactionAccountModel _UpdateTS)
+        {
+            DatabaseConnection.SetConnection();
+            DatabaseConnection.sql_con.Open();
+            SQLiteCommand CommandText = new SQLiteCommand("UPDATE Account " +
+                                                          "SET AccountID = @AccountID , Username = @Username, Password = @Password, DisplayName = @DisplayName, Roles = @Roles " +
+                                                          "WHERE AccountID = @UpdateKey", DatabaseConnection.sql_con);
+
+            CommandText.CommandType = CommandType.Text;
+
+            CommandText.Parameters.Add(new SQLiteParameter("@AccountID", _UpdateTS.AccountID));
+            CommandText.Parameters.Add(new SQLiteParameter("@Username", _UpdateTS.Username));
+            CommandText.Parameters.Add(new SQLiteParameter("@Password", _UpdateTS.Password));
+            CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", _UpdateTS.DisplayName));
+            CommandText.Parameters.Add(new SQLiteParameter("@Roles", _UpdateTS.Roles));
+            CommandText.Parameters.Add(new SQLiteParameter("@UpdateKey", _UpdateTS.AccountID));
+
+            CommandText.ExecuteNonQuery();
+
+
+            DatabaseConnection.sql_con.Close();
+        }
 
         private void UpdateDatabase(List<AccountModel> _UpdateList ,List<string> _UpdateKeyList) //multiple Update
         {
@@ -579,6 +670,29 @@ namespace SqliteDB
                 RefreshDataGridView();
             }
 
+        }
+
+        private void DeleteDatabaseTS(TransactionAccountModel _DeleteTS)
+        {
+            DatabaseConnection.SetConnection();
+            DatabaseConnection.sql_con.Open();
+            SQLiteCommand CommandText = new SQLiteCommand("DELETE " +
+                                                          "FROM Account " +
+                                                          "WHERE AccountID = @DeleteKey", DatabaseConnection.sql_con);
+
+            CommandText.CommandType = CommandType.Text;
+
+            CommandText.Parameters.Add(new SQLiteParameter("@AccountID", _DeleteTS.AccountID));
+            CommandText.Parameters.Add(new SQLiteParameter("@Username", _DeleteTS.Username));
+            CommandText.Parameters.Add(new SQLiteParameter("@Password", _DeleteTS.Password));
+            CommandText.Parameters.Add(new SQLiteParameter("@DisplayName", _DeleteTS.DisplayName));
+            CommandText.Parameters.Add(new SQLiteParameter("@Roles", _DeleteTS.Roles));
+            CommandText.Parameters.Add(new SQLiteParameter("@DeleteKey", _DeleteTS.AccountID));
+
+            CommandText.ExecuteNonQuery();
+
+
+            DatabaseConnection.sql_con.Close();
         }
 
         private void DeleteDatabase(List<AccountModel> _DeleteList, List<string> _DeleteKeyList)
