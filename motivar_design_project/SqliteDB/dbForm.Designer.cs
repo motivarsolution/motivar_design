@@ -45,7 +45,10 @@
             this.ClearButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.bcGenButton = new System.Windows.Forms.Button();
+            this.bcPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bcPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // Grid
@@ -219,11 +222,32 @@
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // bcGenButton
+            // 
+            this.bcGenButton.Location = new System.Drawing.Point(506, 377);
+            this.bcGenButton.Name = "bcGenButton";
+            this.bcGenButton.Size = new System.Drawing.Size(105, 23);
+            this.bcGenButton.TabIndex = 17;
+            this.bcGenButton.Text = "Barcode Generate";
+            this.bcGenButton.UseVisualStyleBackColor = true;
+            this.bcGenButton.Click += new System.EventHandler(this.bcGenButton_Click);
+            // 
+            // bcPictureBox
+            // 
+            this.bcPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bcPictureBox.Location = new System.Drawing.Point(302, 207);
+            this.bcPictureBox.Name = "bcPictureBox";
+            this.bcPictureBox.Size = new System.Drawing.Size(308, 152);
+            this.bcPictureBox.TabIndex = 18;
+            this.bcPictureBox.TabStop = false;
+            // 
             // dbForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(635, 414);
+            this.Controls.Add(this.bcPictureBox);
+            this.Controls.Add(this.bcGenButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.RolesTextbox);
             this.Controls.Add(this.RolesLabel);
@@ -246,6 +270,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.dbForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bcPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +295,8 @@
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button bcGenButton;
+        private System.Windows.Forms.PictureBox bcPictureBox;
     }
 }
 

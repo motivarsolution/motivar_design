@@ -15,6 +15,7 @@ using SqliteDB.Controller;
 using Microsoft.Identity.Client;
 using System.Collections.ObjectModel;
 using SqliteDB.Utility;
+using BarcodeGen;
 
 namespace SqliteDB
 {
@@ -745,5 +746,13 @@ namespace SqliteDB
             Debug.WriteLine("Application Close");
         }
 
+        private void bcGenButton_Click(object sender, EventArgs e)
+        {
+            var fitSize = bcPictureBox.ClientSize;
+            Bitmap BarcodeBitmap = new Bitmap(BarcodeGenerate.BarcodeGen(Grid.CurrentRow.Cells["DisplayName"].Value.ToString()));
+            bcPictureBox.Image = BarcodeBitmap;
+            bcPictureBox.SizeMode = BarcodeBitmap.Width > fitSize.Width || BarcodeBitmap.Height > fitSize.Height ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
+
+        }
     }
 }
