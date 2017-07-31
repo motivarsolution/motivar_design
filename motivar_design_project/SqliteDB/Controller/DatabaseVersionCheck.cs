@@ -43,19 +43,42 @@ namespace SqliteDB.Controller
         {
             QueryDatabaseVersion();
 
-            if (DatabaseVersion.Version == GlobalConstant.DB_VERSION)
+            if (ServerConnection.Connect())
             {
-                Debug.WriteLine("-----------------------------------------------");
-                Debug.WriteLine("   Database Version ===> " + DatabaseVersion.Version);
-                Debug.WriteLine("   Database CreatedBy ===> " + DatabaseVersion.CreatedBy);
-                Debug.WriteLine("-----------------------------------------------");
-                return true;
+                if (DatabaseVersion.Version == ServerConnection.ServerDatabaserVersion.Version)
+                {
+                    Debug.WriteLine("-----------------------------------------------");
+                    Debug.WriteLine("   Database Version ===> " + DatabaseVersion.Version);
+                    Debug.WriteLine("   Database CreatedBy ===> " + DatabaseVersion.CreatedBy);
+                    Debug.WriteLine("-----------------------------------------------");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(" Database Error! Please Update Database to latest version ");
+                    return false;
+                }
             }
             else
             {
-                Debug.WriteLine(" Database Error! Please Update Database to latest version ");
-                return false;
+                if (DatabaseVersion.Version == GlobalConstant.DB_VERSION)
+                {
+                    Debug.WriteLine("-----------------------------------------------");
+                    Debug.WriteLine("   Database Version ===> " + DatabaseVersion.Version);
+                    Debug.WriteLine("   Database CreatedBy ===> " + DatabaseVersion.CreatedBy);
+                    Debug.WriteLine("-----------------------------------------------");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(" Database Error! Please Update Database to latest version ");
+                    return false;
+                }
             }
+            
+
+            //if (DatabaseVersion.Version == GlobalConstant.DB_VERSION)
+            
         }
 
     }

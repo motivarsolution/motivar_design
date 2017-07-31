@@ -66,6 +66,9 @@ namespace SqliteDB
                 MessageBox.Show("Database is Not Latest Version.", "Database Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CloseApp();
             }
+
+
+
         }
 
         private void DefineBackgroundWorker()
