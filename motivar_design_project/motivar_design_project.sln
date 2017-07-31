@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AES", "AES\AES.csproj", "{0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeGen", "BarcodeGen\BarcodeGen.csproj", "{4845984A-1D5F-44B0-8A50-0DF0C60BA300}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceForm", "InvoiceForm\InvoiceForm.csproj", "{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4845984A-1D5F-44B0-8A50-0DF0C60BA300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4845984A-1D5F-44B0-8A50-0DF0C60BA300}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4845984A-1D5F-44B0-8A50-0DF0C60BA300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

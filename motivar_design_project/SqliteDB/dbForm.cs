@@ -16,6 +16,7 @@ using Microsoft.Identity.Client;
 using System.Collections.ObjectModel;
 using SqliteDB.Utility;
 using BarcodeGen;
+using InvoiceForm;
 
 namespace SqliteDB
 {
@@ -55,7 +56,6 @@ namespace SqliteDB
             StoreTransactionAccount.LoadLastTransaction();
 
             tsAccountQueue.Enqueued += RunningQueues;
-
         }
 
 
@@ -753,6 +753,11 @@ namespace SqliteDB
             bcPictureBox.Image = BarcodeBitmap;
             bcPictureBox.SizeMode = BarcodeBitmap.Width > fitSize.Width || BarcodeBitmap.Height > fitSize.Height ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
 
+        }
+
+        private void CreateFormButton_Click(object sender, EventArgs e)
+        {
+            FormPDF.CreateFile();
         }
     }
 }

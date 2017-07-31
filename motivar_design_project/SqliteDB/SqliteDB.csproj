@@ -141,6 +141,10 @@
       <Project>{4845984a-1d5f-44b0-8a50-0df0c60ba300}</Project>
       <Name>BarcodeGen</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InvoiceForm\InvoiceForm.csproj">
+      <Project>{ba38b53f-0a7d-4fe7-b929-801e03dfbdc8}</Project>
+      <Name>InvoiceForm</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
