@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "motivar_design_project", "motivar_design_project\motivar_design_project.csproj", "{20CE4434-40AA-4D91-9DE9-452FFAAFE865}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeGen", "BarcodeGen\BarcodeGen.csproj", "{4845984A-1D5F-44B0-8A50-0DF0C60BA300}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceForm", "InvoiceForm\InvoiceForm.csproj", "{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{267B5E45-A7AD-489C-8C6C-692AB6995D5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA38B53F-0A7D-4FE7-B929-801E03DFBDC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{267B5E45-A7AD-489C-8C6C-692AB6995D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{267B5E45-A7AD-489C-8C6C-692AB6995D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{267B5E45-A7AD-489C-8C6C-692AB6995D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{267B5E45-A7AD-489C-8C6C-692AB6995D5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
