@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MOTIVAR
+namespace MOTIVAR.pages
 {
     /// <summary>
-    /// Interaction logic for SplashScreen.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class SplashScreen : Window
+    public partial class Login : Window
     {
-        public SplashScreen()
+        public Login()
         {
             InitializeComponent();
         }
