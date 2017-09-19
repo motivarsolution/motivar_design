@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MOTIVAR"
         mc:Ignorable="d"
-        Title="SplashScreen" 
-        Height="453" 
+        Name="SplashScreenPage"
+        Height="483" 
         Width="800"
-        WindowStyle="None"
+        Icon="../resource/images/Icon.png"
+        BorderBrush="Black"
+        WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize" Loaded="Window_Loaded">
+        ResizeMode="NoResize" 
+        Loaded="Window_Loaded" Topmost="True" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -30,7 +33,8 @@
                     BorderThickness="0"
                     Margin="0 5 5 0"
                     VerticalAlignment="Top"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    Visibility="Collapsed">
                 <TextBlock Text="X" 
                            FontWeight="DemiBold"
                            FontSize="18"/>
