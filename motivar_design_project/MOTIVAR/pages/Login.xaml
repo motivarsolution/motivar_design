@@ -5,31 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MOTIVAR.pages"
         mc:Ignorable="d"
+        Name="LoginWindows"
         Title="Login" 
         Height="453" 
         Width="800"
-        WindowStyle="None"
+        Icon="../resource/images/Icon.png"
+        Background="#FFCEEAE5"
+        WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Image Source="..\resource\images\splash_screen.jpg"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Center"/>
-            <Grid 
-                   Background="WhiteSmoke"
-                   Opacity="0.75"
-                   Height="450" 
-                   Width="800" />
+        ResizeMode="CanResize">
+    <Grid Name="LoginMainGrid">
+        <StackPanel Name="LoginMainStackPanel"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Image Source="..\resource\images\Warehouse.png"
+                   Width="100"/>
+            <TextBlock Name="LoginTextBlock"
+                       Text="Login"
+                       FontSize="28"
+                       HorizontalAlignment="Center"/>
+            <Grid Name="UsernameGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Username"
+                           Grid.Column="0"/>
+                <TextBox Name="UsernameTextBox" 
+                         Width="150"
+                         Grid.Column="1"/>
+            </Grid>
+            <Grid Name="PasswordGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Password"
+                           Grid.Column="0"/>
+                <PasswordBox Name="PasswordTextBox" 
+                             Width="150"
+                             Grid.Column="1"/>
+            </Grid>
+            <Button Content="Submit" 
+                    Visibility="Hidden"
+                    HorizontalAlignment="Center"
+                    Width="100"/>
+        </StackPanel>
+        <Grid VerticalAlignment="Bottom"
+              Background="#FF3F3F46"
+              Width="auto"
+              Height="30">
+            <Button Name="SubmitButton"
+                    Content="Submit"
+                    HorizontalAlignment="Right"
+                    Height="20"
+                    Width="50" Click="SubmitButton_Click"/>
         </Grid>
-        <ProgressBar Value="75"
-                     Height="3"
-                     Grid.Row="1" />
 
     </Grid>
 </Window>

@@ -10,27 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Navigation;
-using MOTIVAR.pages;
+using System.Windows.Shapes;
 
 namespace MOTIVAR.pages
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Main.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Main : Page
     {
-        public Login()
+        public Main()
         {
             InitializeComponent();
-        }
-
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
-        {
-            Login LoginPage = new Login();
-
-            
         }
     }
 }

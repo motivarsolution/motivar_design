@@ -14,7 +14,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" 
         Loaded="Window_Loaded" Topmost="True" >
-    <Grid>
+    <Grid Name="SplashScreenMainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -48,8 +48,8 @@
                          Minimum="0"
                          Maximum="100"
                          IsIndeterminate="False"
-                         Foreground="Chartreuse"
-                         Height="3"/>
+                         Foreground="#FF59B400"
+                         Height="3" Background="#FFCEEAE5"/>
             <TextBlock Name="SplashScreenProgressBarText"
                        Text="SplashScreenProgressBar Text"
                        FontWeight="Light"
