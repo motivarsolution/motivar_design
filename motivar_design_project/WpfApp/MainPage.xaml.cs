@@ -10,18 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp;
 
 namespace WpfApp
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class MainPage : Page
     {
-        public Window1()
+        public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Page1.xaml", UriKind.Relative));
         }
     }
 }
