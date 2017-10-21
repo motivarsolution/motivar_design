@@ -1,14 +1,13 @@
-﻿<Window x:Class="NavigationTest.MainWindow"
+﻿<Window x:Class="NavigationTest.SubWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NavigationTest"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        Height="720" 
-        Width="1280">
-    <Grid Name="MainGrid">
-        <Button Name="NewWindowButton" Content="New Window" Width="100" Height="50" VerticalAlignment="Bottom" Click="NewWindowButton_Click"/>
+        Background="Firebrick"
+        Title="SubWindow" Height="300" Width="300">
+    <Grid>
+        
     </Grid>
 </Window>

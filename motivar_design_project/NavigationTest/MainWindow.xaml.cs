@@ -28,5 +28,12 @@ namespace NavigationTest
             
             MainGrid.Children.Add(_fuc);
         }
+
+        private void NewWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            SubWindow _subWindow = new SubWindow();
+            _subWindow.Show();
+            this.Close();
+        }
     }
 }

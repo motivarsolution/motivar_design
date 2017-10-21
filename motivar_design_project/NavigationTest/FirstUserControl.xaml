@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NavigationTest"
              mc:Ignorable="d" 
              x:Name="FirstUserControlName"
-             Height="720"
+             Height="600"
              Width="1280"
              Background="Red"
              d:DesignHeight="300" 
