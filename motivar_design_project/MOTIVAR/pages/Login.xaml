@@ -13,39 +13,66 @@
         Background="#FFCEEAE5"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResize">
+        ResizeMode="NoResize">
+
+    <Window.Resources x:Uid="MainResoure">
+        <Image x:Key="LoginButtonImage" Source="..\resource\images\GUI Icon\Inside-logout.ico"/>
+    </Window.Resources>
+    
     <Grid Name="LoginMainGrid">
         <StackPanel Name="LoginMainStackPanel"
                     Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <Image Source="..\resource\images\Warehouse.png"
-                   Width="100"/>
+                   Width="100"
+                   Visibility="Collapsed"/>
             <TextBlock Name="LoginTextBlock"
                        Text="Login"
                        FontSize="28"
-                       HorizontalAlignment="Center"/>
-            <Grid Name="UsernameGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Username"
-                           Grid.Column="0"/>
-                <TextBox Name="UsernameTextBox" 
-                         Width="150"
-                         Grid.Column="1"/>
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 0"/>
+            <Grid Name="UsernameGrid" 
+                  Margin="0 10 0 0">
+                <Image Source="../resource/images/GUI/TextBox.png" 
+                       Height="26"
+                       Grid.Column="1"/>
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0 0 0 0.5">
+                    <TextBlock Text="Username" 
+                               FontWeight ="DemiBold"
+                               VerticalAlignment="Center" 
+                               Margin="0 0 10 0"/>
+                    <TextBox Name="UsernameTextBox"
+                             Background="WhiteSmoke"
+                             VerticalAlignment="Center"
+                         Height="20"
+                         Width="120"
+                         BorderBrush="Transparent"/>
+                </StackPanel>
             </Grid>
-            <Grid Name="PasswordGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Password"
-                           Grid.Column="0"/>
-                <PasswordBox Name="PasswordTextBox" 
-                             Width="150"
-                             Grid.Column="1"/>
+            <Grid Name="PasswordGrid" 
+                  Margin="0 5 0 0">
+                <Image Source="../resource/images/GUI/TextBox.png" 
+                       Height="26"
+                       Grid.Column="1"/>
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0 0 0 0.5">
+                    <TextBlock Text="Password" 
+                               FontWeight ="DemiBold"
+                               VerticalAlignment="Center" 
+                               Margin="0 0 12 0"/>
+                    <PasswordBox Name="PasswordTextBox"
+                             Background="WhiteSmoke"
+                             VerticalAlignment="Center"
+                             Height="20"
+                             Width="120"
+                             BorderBrush="Transparent"/>
+                </StackPanel>
             </Grid>
             <Button Content="Submit" 
                     Visibility="Hidden"
@@ -57,10 +84,12 @@
               Width="auto"
               Height="30">
             <Button Name="SubmitButton"
-                    Content="Submit"
+                    Content="{StaticResource LoginButtonImage}" 
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Width="30"
                     HorizontalAlignment="Right"
-                    Height="20"
-                    Width="50" Click="SubmitButton_Click"/>
+                    Margin="0 0 5 0" Click="SubmitButton_Click"/>
         </Grid>
 
     </Grid>

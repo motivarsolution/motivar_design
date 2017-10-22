@@ -28,7 +28,7 @@ namespace WpfApp
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("Page1.xaml", UriKind.Relative));
+            //this.NavigationService.Navigate(new Uri("Page1.xaml", UriKind.Relative));
         }
     }
 }

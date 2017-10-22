@@ -28,9 +28,7 @@ namespace MOTIVAR.pages
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            Login LoginPage = new Login();
-
-            
+            MessageBox.Show("Welcome ^^");
         }
     }
 }

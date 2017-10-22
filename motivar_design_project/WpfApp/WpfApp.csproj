@@ -60,11 +60,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplexUI.xaml.cs">
+      <DependentUpon>ComplexUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="convertTextInputToVisibility.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -92,14 +93,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="SplashScreen1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MainPage.xaml">
+    <Page Include="ComplexUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page1.xaml">
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
