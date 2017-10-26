@@ -49,7 +49,7 @@
                              VerticalAlignment="Center"
                          Height="20"
                          Width="120"
-                         BorderBrush="Transparent"/>
+                         BorderBrush="Transparent" KeyUp="UsernameTextBox_KeyUp"/>
                 </StackPanel>
             </Grid>
             <Grid Name="PasswordGrid" 
@@ -69,40 +69,28 @@
                              VerticalAlignment="Center"
                              Height="20"
                              Width="120"
-                             BorderBrush="Transparent"/>
+                             BorderBrush="Transparent" KeyUp="PasswordTextBox_KeyUp"/>
                 </StackPanel>
             </Grid>
             <Grid Name="SubmitGrid"
-                  Margin="0 5 0 0">
-                <Image Source="../resource/images/GUI/TextBox.png" 
+                  Visibility="Visible"
+                  Margin="0 5 0 0" 
+                  MouseEnter="SubmitGrid_MouseEnter" 
+                  MouseLeave="SubmitGrid_MouseLeave" 
+                  MouseDown="SubmitGrid_MouseDown" 
+                  MouseUp="SubmitGrid_MouseUp">
+                <Image Name="SubmitButtonImage"
+                       Opacity="0.7"
+                       Source="../resource/images/GUI/TextBox.png" 
                        Height="26"/>
-                <Button Content="Submit" 
-                        FontWeight="DemiBold"
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Height="20"
-                        Width="180"/>
+                <TextBlock Name="SubmitText"
+                           Text="Submit" 
+                           FontWeight="DemiBold"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" />
 
             </Grid>
-            <Button Content="Submit" 
-                    Visibility="Hidden"
-                    HorizontalAlignment="Center"
-                    Width="100"/>
         </StackPanel>
-        <Grid VerticalAlignment="Bottom"
-              Background="#FF3F3F46"
-              Width="auto"
-              Height="30">
-            <Button Name="SubmitButton"
-                    Content="{StaticResource LoginButtonImage}" 
-                    BorderBrush="Transparent"
-                    Background="Transparent"
-                    Width="30"
-                    HorizontalAlignment="Right"
-                    Margin="0 0 5 0" Click="SubmitButton_Click"/>
-        </Grid>
 
     </Grid>
 

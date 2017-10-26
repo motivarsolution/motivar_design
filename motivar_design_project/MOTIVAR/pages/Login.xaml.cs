@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using MOTIVAR.pages;
+using System.Diagnostics;
 
 namespace MOTIVAR.pages
 {
@@ -26,9 +27,40 @@ namespace MOTIVAR.pages
             InitializeComponent();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void SubmitGrid_MouseEnter(object sender, MouseEventArgs e)
         {
-            MessageBox.Show("Welcome ^^");
+            SubmitButtonImage.Opacity = 1;
+        }
+
+        private void SubmitGrid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SubmitButtonImage.Opacity = 0.7;
+        }
+
+        private void SubmitGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SubmitText.Foreground = Brushes.DarkGray;
+        }
+
+        private void SubmitGrid_MouseUp(object sender, MouseButtonEventArgs e)//Click Login
+        {
+            SubmitText.Foreground = Brushes.Black;
+            LoginSubmitted();
+        }
+
+        private void UsernameTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) PasswordTextBox.Focus();
+        }
+
+        private void PasswordTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) LoginSubmitted();
+        }
+
+        public void LoginSubmitted()
+        {
+            Debug.WriteLine("Login Submitted!");
         }
     }
 }
