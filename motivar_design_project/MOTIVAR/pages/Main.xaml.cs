@@ -22,6 +22,14 @@ namespace MOTIVAR.pages
         public Main()
         {
             InitializeComponent();
+
+
+        }
+
+        private void MainWindows_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextTestWidth.Text = "W : " + UserControlGrid.ActualWidth.ToString();
+            TextTestHeight.Text = "H : " + UserControlGrid.ActualHeight.ToString();
         }
     }
 }
