@@ -50,7 +50,12 @@ namespace MOTIVAR.pages
 
         private void UsernameTextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) PasswordTextBox.Focus();
+            if (e.Key == Key.Enter)
+            {
+                PasswordTextBox.Focus();
+                PasswordTextBox.Clear();
+            }
+            
         }
 
         private void PasswordTextBox_KeyUp(object sender, KeyEventArgs e)
