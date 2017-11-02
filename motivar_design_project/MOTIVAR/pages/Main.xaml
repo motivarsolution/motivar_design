@@ -7,35 +7,56 @@
         mc:Ignorable="d"
         Name="MainWindows"
         Title="Main" 
-        WindowState="Maximized"
+        WindowState="Normal"
         WindowStartupLocation="Manual"
         Icon="../resource/images/Icon.png"
         Background="#FFCEEAE5"
         WindowStyle="SingleBorderWindow"
-        ResizeMode="NoResize"
-        Height="1080" Width="1920" Loaded="MainWindows_Loaded">
+        ResizeMode="CanResizeWithGrip"
+        Height="768"
+        Width="1366"
+        MinHeight="768"
+        MinWidth="1366"
+        Loaded="MainWindows_Loaded">
     <Grid Name="MainGrid">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="107"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="49"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Background="WhiteSmoke">
-            </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Name="MainLeftSidebar"
                       HorizontalAlignment="Left"
-                      Background="Azure"
-                      Width="180"
+                      Background="Gray"
+                      Width="200"
                       Grid.Column="0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="--- Menu ---" Margin="0 20 0 0" FontSize="30" FontWeight="Heavy" Foreground="White" HorizontalAlignment="Center"/>
+                        <ListView Background="Gray" Margin="0 10 0 0" BorderBrush="Transparent">
+                            <ListViewItem>
+                                <TextBlock Text="Menu1" FontSize="30" Foreground="WhiteSmoke"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="Menu2" FontSize="30" Foreground="WhiteSmoke"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="Menu3" FontSize="30" Foreground="WhiteSmoke"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="Menu4" FontSize="30" Foreground="WhiteSmoke"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="Menu5" FontSize="30" Foreground="WhiteSmoke"/>
+                            </ListViewItem>
+                        </ListView>
+                    </StackPanel>
                 </Grid>
                 <Grid Name="UserControlGrid" 
+                      Background="Crimson"
                     Grid.Column="1">
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Center"
@@ -51,8 +72,8 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="2"
-                  Background="Wheat">
+            <Grid Grid.Row="1"
+                  Background="DimGray">
             </Grid>
         </Grid>
         
