@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MOTIVAR.pages;
+using System.Diagnostics;
 
 namespace MOTIVAR.pages
 {
@@ -19,9 +21,14 @@ namespace MOTIVAR.pages
     /// </summary>
     public partial class Main : Window
     {
+        InventoryBalance _InventoryBalance = new InventoryBalance();
+        Sales _Sales = new Sales();
+
         public Main()
-        {
+        {   
             InitializeComponent();
+            SetUserControlMenu(_InventoryBalance);
+
 
 
         }
@@ -31,5 +38,24 @@ namespace MOTIVAR.pages
             TextTestWidth.Text = "W : " + UserControlGrid.ActualWidth.ToString();
             TextTestHeight.Text = "H : " + UserControlGrid.ActualHeight.ToString();
         }
+
+        private void InventoryBalanceMenu_Selected(object sender, RoutedEventArgs e) => SetUserControlMenu(_InventoryBalance);
+
+        private void SalesMenu_Selected(object sender, RoutedEventArgs e) => SetUserControlMenu(_Sales);
+
+        private void SetUserControlMenu(UserControl _UserControlSelected)
+        {
+            ClearUserControlGrid();
+            UserControlGrid.Children.Add(_UserControlSelected);
+        }
+
+        private void ClearUserControlGrid()
+        {
+            UserControlGrid.Children.Clear();
+        }
+
+
     }
+
+
 }
