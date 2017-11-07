@@ -61,6 +61,7 @@
                             <TextBlock Text="Search"/>
                         </StackPanel>
                         <DataGrid Name="MainDataGrid"
+                                  SelectionMode="Single"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   ColumnWidth="*"
