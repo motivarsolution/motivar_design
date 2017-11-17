@@ -10,28 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MOTIVAR.pages.footer;
-using MOTIVAR.pages;
-using MOTIVAR.pages.submenu;
 
-namespace MOTIVAR.pages.footer
+namespace MOTIVAR.pages.submenu
 {
     /// <summary>
-    /// Interaction logic for InventoryBalanceFooter.xaml
+    /// Interaction logic for NewProduct.xaml
     /// </summary>
-    public partial class InventoryBalanceFooter : UserControl
+    public partial class NewProduct : Window
     {
-        public InventoryBalanceFooter()
+        public NewProduct()
         {
             InitializeComponent();
         }
 
-        private void NewProductFooterButton_Click(object sender, RoutedEventArgs e)
+        private void NewProductWindow_Unloaded(object sender, RoutedEventArgs e)
         {
-            NewProduct _NewProdcut = new NewProduct();
-            _NewProdcut.Show();
+            this.Close();
         }
     }
 }

@@ -23,14 +23,14 @@ namespace MOTIVAR.pages
     /// </summary>
     public partial class Main : Window
     {
-        InventoryBalance _InventoryBalance = new InventoryBalance();
-        Sales _Sales = new Sales();
-        Profile _Profile = new Profile();
-        Settings _Settings = new Settings();
-        InventoryBalanceFooter _InventoryBalanceFooter = new InventoryBalanceFooter();
-        SalesFooter _SalesFooter = new SalesFooter();
-        ProfileFooter _ProfileFooter = new ProfileFooter();
-        SettingsFooter _SettingsFooter = new SettingsFooter();
+        public InventoryBalance _InventoryBalance = new InventoryBalance();
+        public Sales _Sales = new Sales();
+        public Profile _Profile = new Profile();
+        public Settings _Settings = new Settings();
+        public InventoryBalanceFooter _InventoryBalanceFooter = new InventoryBalanceFooter();
+        public SalesFooter _SalesFooter = new SalesFooter();
+        public ProfileFooter _ProfileFooter = new ProfileFooter();
+        public SettingsFooter _SettingsFooter = new SettingsFooter();
 
         public Main()
         {   
@@ -141,6 +141,11 @@ namespace MOTIVAR.pages
 
         #endregion
 
+        #region Reactive UserControl
+
+
+        #endregion
+
         #region UserControl Menu/Footer
         private void SetUserControlMenu(UserControl _UserControlSelected)
         {
@@ -148,15 +153,15 @@ namespace MOTIVAR.pages
             UserControlGrid.Children.Add(_UserControlSelected);
         }
 
+        private void ClearUserControlGrid()
+        {
+            UserControlGrid.Children.Clear();
+        }
+
         private void SetUserControlFooter(UserControl _UserControlSelected)
         {
             ClearUserControlGridFooter();
             UserControlGridFooter.Children.Add(_UserControlSelected);
-        }
-
-        private void ClearUserControlGrid()
-        {
-            UserControlGrid.Children.Clear();
         }
 
         private void ClearUserControlGridFooter()

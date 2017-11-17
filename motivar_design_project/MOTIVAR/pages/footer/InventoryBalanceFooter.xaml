@@ -9,11 +9,12 @@
              Background="LawnGreen"
              d:DesignHeight="49" d:DesignWidth="1350">
     <Grid>
-        <Button Content="New Product"
+        <Button Name="NewProductFooterButton"
+                Content="New Product"
                 HorizontalAlignment="Right"
                 Height="30"
                 Width="100"
-                Margin="0 0 10 0">
+                Margin="0 0 10 0" Click="NewProductFooterButton_Click">
         </Button>
     </Grid>
 </UserControl>

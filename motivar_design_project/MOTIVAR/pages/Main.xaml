@@ -17,7 +17,8 @@
         Width="1366"
         MinHeight="768"
         MinWidth="1366"
-        Loaded="MainWindows_Loaded" SizeChanged="MainWindows_SizeChanged">
+        Loaded="MainWindows_Loaded" 
+        SizeChanged="MainWindows_SizeChanged">
     <Grid Name="MainGrid">
         <Grid>
             <Grid.RowDefinitions>
