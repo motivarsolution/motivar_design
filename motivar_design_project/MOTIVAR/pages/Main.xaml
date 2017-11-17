@@ -17,7 +17,7 @@
         Width="1366"
         MinHeight="768"
         MinWidth="1366"
-        Loaded="MainWindows_Loaded">
+        Loaded="MainWindows_Loaded" SizeChanged="MainWindows_SizeChanged">
     <Grid Name="MainGrid">
         <Grid>
             <Grid.RowDefinitions>
@@ -66,17 +66,58 @@
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="--- Menu ---" Margin="0 0 0 0" FontSize="30" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
                         <ListView Background="Gray" Margin="0 10 0 0" BorderBrush="Transparent">
-                            <ListViewItem Name="InventoryBalanceMenu" Selected="InventoryBalanceMenu_Selected">
-                                <TextBlock Text="Inventory Balance" FontSize="20" Foreground="WhiteSmoke"/>
+                            <ListViewItem Name="InventoryBalanceMenu" 
+                                          Selected="InventoryBalanceMenu_Selected" 
+                                          Unselected="InventoryBalanceMenu_Unselected">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Name="InventoryBalanceMenuSelectedCheck" 
+                                          Background="WhiteSmoke" 
+                                          Width="4" 
+                                          Margin="0 0 5 0"
+                                          Visibility="Hidden"/>
+                                    <TextBlock Text="Inventory Balance" 
+                                               FontSize="20" 
+                                               Foreground="WhiteSmoke"/>
+                                </StackPanel>
                             </ListViewItem>
-                            <ListViewItem Name="SalesMenu" Selected="SalesMenu_Selected">
-                                <TextBlock Text="Sales" FontSize="20" Foreground="WhiteSmoke"/>
+                            <ListViewItem Name="SalesMenu" 
+                                          Selected="SalesMenu_Selected" Unselected="SalesMenu_Unselected">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Name="SalesMenuSelectedCheck" 
+                                          Background="WhiteSmoke" 
+                                          Width="4" 
+                                          Margin="0 0 5 0"
+                                          Visibility="Hidden"/>
+                                    <TextBlock Text="Sales" 
+                                               FontSize="20" 
+                                               Foreground="WhiteSmoke"/>
+                                </StackPanel>
                             </ListViewItem>
-                            <ListViewItem>
-                                <TextBlock Text="Profile" FontSize="20" Foreground="WhiteSmoke"/>
+                            <ListViewItem Name="ProfileMenu" 
+                                          Selected="ProfileMenu_Selected" Unselected="ProfileMenu_Unselected">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Name="ProfileMenuSelectedCheck" 
+                                          Background="WhiteSmoke" 
+                                          Width="4" 
+                                          Margin="0 0 5 0"
+                                          Visibility="Hidden"/>
+                                    <TextBlock Text="Profile" 
+                                               FontSize="20" 
+                                               Foreground="WhiteSmoke"/>
+                                </StackPanel>
                             </ListViewItem>
-                            <ListViewItem>
-                                <TextBlock Text="Settings" FontSize="20" Foreground="WhiteSmoke"/>
+                            <ListViewItem Name="SettingsMenu" 
+                                          Selected="SettingsMenu_Selected" Unselected="SettingsMenu_Unselected">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Name="SettingsMenuSelectedCheck" 
+                                          Background="WhiteSmoke" 
+                                          Width="4" 
+                                          Margin="0 0 5 0"
+                                          Visibility="Hidden"/>
+                                    <TextBlock Text="Settings" 
+                                               FontSize="20" 
+                                               Foreground="WhiteSmoke"/>
+                                </StackPanel>
                             </ListViewItem>
                         </ListView>
                     </StackPanel>
@@ -84,7 +125,6 @@
                 <Grid Name="UserControlGrid" 
                       Background="Crimson"
                     Grid.Column="1">
-                    <UserControl Name="MainUserControl"/>
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
@@ -99,9 +139,10 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="2"
+            <Grid Name="FooterGrid"
+                  Grid.Row="2"
                   Background="DimGray">
-                <TextBlock Text="Footer" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"></TextBlock>
+                <Grid Name="UserControlGridFooter"/>
             </Grid>
         </Grid>
         

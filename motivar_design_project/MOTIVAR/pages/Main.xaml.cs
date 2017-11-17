@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MOTIVAR.pages;
 using System.Diagnostics;
+using MOTIVAR.controller;
+using MOTIVAR.pages.footer;
 
 namespace MOTIVAR.pages
 {
@@ -23,30 +25,133 @@ namespace MOTIVAR.pages
     {
         InventoryBalance _InventoryBalance = new InventoryBalance();
         Sales _Sales = new Sales();
+        Profile _Profile = new Profile();
+        Settings _Settings = new Settings();
+        InventoryBalanceFooter _InventoryBalanceFooter = new InventoryBalanceFooter();
+        SalesFooter _SalesFooter = new SalesFooter();
+        ProfileFooter _ProfileFooter = new ProfileFooter();
+        SettingsFooter _SettingsFooter = new SettingsFooter();
 
         public Main()
         {   
             InitializeComponent();
-            SetUserControlMenu(_InventoryBalance);
-
-
-
+            
         }
-
-        private void MainWindows_Loaded(object sender, RoutedEventArgs e)
+        #region Startup
+        
+        private void Startup()
         {
             TextTestWidth.Text = "W : " + UserControlGrid.ActualWidth.ToString();
             TextTestHeight.Text = "H : " + UserControlGrid.ActualHeight.ToString();
+
+            InventoryBalanceMenu_Selected(this, null);
+
+            SetUserControlMenu(_InventoryBalance);
+            GlobalVariables.CurrentPage = 0;
+            GlobalFunction.DebugMessage("Current Page : " + GlobalVariables.CurrentPage);
+            GlobalFunction.DebugMessage("Footer Height -> " + FooterGrid.ActualHeight);
+            GlobalFunction.DebugMessage("Footer Width -> " + FooterGrid.ActualWidth);
+
+            SetUserControlFooter(_InventoryBalanceFooter);
+
         }
 
-        private void InventoryBalanceMenu_Selected(object sender, RoutedEventArgs e) => SetUserControlMenu(_InventoryBalance);
+        #endregion
 
-        private void SalesMenu_Selected(object sender, RoutedEventArgs e) => SetUserControlMenu(_Sales);
+        #region Windows Event
 
+        private void MainWindows_Loaded(object sender, RoutedEventArgs e)
+        {
+            Startup();   
+        }
+
+        private void MainWindows_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            GlobalFunction.DebugMessage("Footer Height -> " + FooterGrid.ActualHeight);
+            GlobalFunction.DebugMessage("Footer Width -> " + FooterGrid.ActualWidth);
+        }
+
+        #endregion
+
+        #region UserControl Selected/Unselected Event
+
+        private void InventoryBalanceMenu_Selected(object sender, RoutedEventArgs e)
+        {
+            SetUserControlMenu(_InventoryBalance);
+            SetUserControlFooter(_InventoryBalanceFooter);
+            InventoryBalanceMenuSelectedCheck.Visibility = Visibility.Visible;
+            GlobalVariables.CurrentPage = 0;
+            GlobalFunction.DebugMessage("Current Page : " + GlobalVariables.CurrentPage);
+        }
+
+        private void SalesMenu_Selected(object sender, RoutedEventArgs e)
+        {
+            SetUserControlMenu(_Sales);
+            SetUserControlFooter(_SalesFooter);
+            SalesMenuSelectedCheck.Visibility = Visibility.Visible;
+            HiddenInventoryBalanceMenuSelectedCheck();
+            GlobalVariables.CurrentPage = 1;
+            GlobalFunction.DebugMessage("Current Page : " + GlobalVariables.CurrentPage);
+        }
+
+        private void ProfileMenu_Selected(object sender, RoutedEventArgs e)
+        {
+            SetUserControlMenu(_Profile);
+            SetUserControlFooter(_ProfileFooter);
+            ProfileMenuSelectedCheck.Visibility = Visibility.Visible;
+            HiddenInventoryBalanceMenuSelectedCheck();
+            GlobalVariables.CurrentPage = 2;
+            GlobalFunction.DebugMessage("Current Page : " + GlobalVariables.CurrentPage);
+        }
+
+        private void SettingsMenu_Selected(object sender, RoutedEventArgs e)
+        {
+            SetUserControlMenu(_Settings);
+            SetUserControlFooter(_SettingsFooter);
+            SettingsMenuSelectedCheck.Visibility = Visibility.Visible;
+            HiddenInventoryBalanceMenuSelectedCheck();
+            GlobalVariables.CurrentPage = 3;
+            GlobalFunction.DebugMessage("Current Page : " + GlobalVariables.CurrentPage);
+        }
+
+        private void InventoryBalanceMenu_Unselected(object sender, RoutedEventArgs e)
+        {
+            HiddenInventoryBalanceMenuSelectedCheck();
+        }
+
+        private void SalesMenu_Unselected(object sender, RoutedEventArgs e)
+        {
+            SalesMenuSelectedCheck.Visibility = Visibility.Hidden;
+        }
+
+        private void ProfileMenu_Unselected(object sender, RoutedEventArgs e)
+        {
+            ProfileMenuSelectedCheck.Visibility = Visibility.Hidden;
+        }
+
+        private void SettingsMenu_Unselected(object sender, RoutedEventArgs e)
+        {
+            SettingsMenuSelectedCheck.Visibility = Visibility.Hidden;
+        }
+
+        private void HiddenInventoryBalanceMenuSelectedCheck()
+        {
+            InventoryBalanceMenuSelectedCheck.Visibility = Visibility.Hidden;
+        }
+
+        #endregion
+
+        #region UserControl Menu/Footer
         private void SetUserControlMenu(UserControl _UserControlSelected)
         {
             ClearUserControlGrid();
             UserControlGrid.Children.Add(_UserControlSelected);
+        }
+
+        private void SetUserControlFooter(UserControl _UserControlSelected)
+        {
+            ClearUserControlGridFooter();
+            UserControlGridFooter.Children.Add(_UserControlSelected);
         }
 
         private void ClearUserControlGrid()
@@ -54,6 +159,11 @@ namespace MOTIVAR.pages
             UserControlGrid.Children.Clear();
         }
 
+        private void ClearUserControlGridFooter()
+        {
+            UserControlGridFooter.Children.Clear();
+        }
+        #endregion
 
     }
 
