@@ -51,16 +51,12 @@ namespace MOTIVAR.pages.submenu
             // Create OpenFileDialog 
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
-
-
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".png";
             dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
 
-
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
-
 
             // Get the selected file name and display in a TextBox 
             if (result == true)
@@ -72,6 +68,13 @@ namespace MOTIVAR.pages.submenu
             }
 
             
+        }
+
+        private void NewProductCancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalVariables.isNewProductWindowShow = false;
+            GlobalFunction.DebugMessage("NewProductWindows Close");
+            this.Close();
         }
     }
 }

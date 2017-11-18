@@ -20,21 +20,25 @@
             <Grid Height="auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <!-- Title -->
+                    <!-- 0 Title -->
                     <RowDefinition Height="auto"/>
-                    <!-- Product Details Header -->
+                    <!-- 1 Product Details Header -->
                     <RowDefinition Height="auto"/>
-                    <!-- Product Details Form -->
+                    <!-- 2 Product Details Form -->
                     <RowDefinition Height="auto"/>
-                    <!-- Product Price Header -->
+                    <!-- 3 Product Price Header -->
                     <RowDefinition Height="auto"/>
-                    <!-- Product Price Form -->
+                    <!-- 4 Product Price Form -->
                     <RowDefinition Height="auto"/>
-                    <!-- Product Position Header -->
+                    <!-- 5 Product Position Header -->
                     <RowDefinition Height="auto"/>
-                    <!-- Product Position Form -->
+                    <!-- 6 Product Position Form -->
                     <RowDefinition Height="auto"/>
-                    <!-- Product Position Form -->
+                    <!-- 7 Product Position Form -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 8 Product Position Form -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 9 Product Position Form -->
                 </Grid.RowDefinitions>
                 <TextBlock Text="New Product"
                            FontSize="30"
@@ -45,6 +49,19 @@
                            Grid.Row="1"/>
                 <VirtualizingStackPanel Orientation="Vertical" 
                                         Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product ID"
+                                   Grid.Column="0"/>
+                        <TextBox Width="200" 
+                                 Height="20"
+                                 IsEnabled="False"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
@@ -266,50 +283,59 @@
                            FontSize="20"
                            TextDecorations="Underline"
                            Grid.Row="5"/>
-                <Grid Grid.Row="6">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical" 
-                                Grid.Column="0">
-                        <TextBlock Text="Image Path"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Name="NewProductImageBrowseTextBlock" Width="200" />
-                            <Button Name="NewProductImageBrowseButton"
+                <StackPanel Orientation="Vertical" 
+                                HorizontalAlignment="Center"
+                                Grid.Row="6">
+                    <TextBlock Text="Image Path"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="NewProductImageBrowseTextBlock" Width="200" />
+                        <Button Name="NewProductImageBrowseButton"
                                     Content="Browse"
                                     Width="80" 
                                     Height="20"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Grid.Column="1" Click="NewProductImageBrowseButton_Click"/>
-                        </StackPanel>
                     </StackPanel>
                     <Border Background="White"
                             BorderBrush="Black"
                             BorderThickness="1"
-                            Width="300"
-                            Height="300"
-                            Grid.Column="1">
-                        <Image Name="NewProductImage" HorizontalAlignment="Stretch"/>
+                            Width="603"
+                            Height="300">
+                        <Image Name="NewProductImage" 
+                               HorizontalAlignment="Center"/>
                     </Border>
-                    
-                </Grid>
-                
+                </StackPanel>
+                <TextBlock Text="Product Barcode"
+                           FontSize="20"
+                           TextDecorations="Underline"
+                           Grid.Row="7"/>
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="8">
+                    <Border Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            Width="603"
+                            Height="50">
+                        <Image Name="NewProductBarcodeImage" 
+                               HorizontalAlignment="Stretch"/>
+                    </Border>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
-                            Grid.Row="7">
+                            Grid.Row="9">
                     <Button Content="Save"
                             Width="80"
                             Margin="0 0 10 0">
-                        
+
                     </Button>
-                    <Button Content="Cancel"
+                    <Button Name="NewProductCancelButton"
+                            Content="Cancel"
                             Width="80"
-                            Margin="0 0 0 0">
-                        
+                            Margin="0 0 0 0" 
+                            Click="NewProductCancelButton_Click">
                     </Button>
-                    
+
                 </StackPanel>
             </Grid>
             
