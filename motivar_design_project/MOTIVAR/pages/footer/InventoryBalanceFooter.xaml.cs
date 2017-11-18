@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MOTIVAR.pages.footer;
 using MOTIVAR.pages;
 using MOTIVAR.pages.submenu;
+using MOTIVAR.controller;
 
 namespace MOTIVAR.pages.footer
 {
@@ -31,7 +32,14 @@ namespace MOTIVAR.pages.footer
         private void NewProductFooterButton_Click(object sender, RoutedEventArgs e)
         {
             NewProduct _NewProdcut = new NewProduct();
-            _NewProdcut.Show();
+            if (!GlobalVariables.isNewProductWindowShow)
+            {
+                GlobalVariables.isNewProductWindowShow = true;
+                _NewProdcut.Show();
+
+                GlobalFunction.DebugMessage("NewProductWindows Show");
+            }
+ 
         }
     }
 }

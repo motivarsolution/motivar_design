@@ -9,5 +9,7 @@ namespace MOTIVAR.controller
     public static class GlobalVariables
     {
         public static int CurrentPage { get; set; }
+
+        public static bool isNewProductWindowShow = false;
     }
 }
