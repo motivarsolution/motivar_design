@@ -58,7 +58,8 @@
                                    Grid.Column="0"/>
                         <TextBox Width="200" 
                                  Height="20"
-                                 IsEnabled="False"
+                                 IsEnabled="True"
+                                 IsReadOnly="True"
                                  HorizontalAlignment="Left"
                                  Grid.Column="1"/>
                     </Grid>

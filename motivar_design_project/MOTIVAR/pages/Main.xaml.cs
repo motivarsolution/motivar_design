@@ -15,6 +15,7 @@ using MOTIVAR.pages;
 using System.Diagnostics;
 using MOTIVAR.controller;
 using MOTIVAR.pages.footer;
+using System.Drawing;
 
 namespace MOTIVAR.pages
 {
@@ -54,6 +55,11 @@ namespace MOTIVAR.pages
 
             SetUserControlFooter(_InventoryBalanceFooter);
 
+        }
+
+        private void SetFont()
+        {
+            //
         }
 
         #endregion

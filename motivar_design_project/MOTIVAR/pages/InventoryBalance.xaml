@@ -38,10 +38,12 @@
 
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <Button Content="Edit Quantity"
+                            <Button Name="EditQuantityInventoryBalanceButton"
+                                    Content="Edit Quantity"
                                     Height="20"
                                     Width="80"/>
-                            <Button Content="Change"
+                            <Button Name="ChangeInventoryBalanceButton"
+                                    Content="Change"
                                     Height="20"
                                     Width="80"/>
                         </StackPanel>
@@ -117,12 +119,21 @@
                                FontSize="12"
                                FontStretch="UltraExpanded" 
                                FontWeight="Normal"/>
-                    <Border Background="White"
+                    <Grid>
+                        <Border Background="White"
                             BorderBrush="Black"
                             BorderThickness="2"
                             Height="80">
-                        <Image Source="..\resource\images\Sample_Barcode.png"/>
-                    </Border>
+                            <Image Source="..\resource\images\Sample_Barcode.png"/>
+                        </Border>
+                        <Button Content="P"
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom">
+                        </Button>
+                    </Grid>
+                    
                     <TextBlock Text="Details"
                                Margin="0 10 0 5"
                                TextDecorations="Underline"/>
