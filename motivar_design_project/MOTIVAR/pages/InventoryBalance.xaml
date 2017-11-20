@@ -38,12 +38,12 @@
 
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <Button Name="EditQuantityInventoryBalanceButton"
-                                    Content="Edit Quantity"
+                            <Button Name="EditProductInventoryBalanceButton"
+                                    Content="Edit Product"
                                     Height="20"
                                     Width="80"/>
-                            <Button Name="ChangeInventoryBalanceButton"
-                                    Content="Change"
+                            <Button Name="EditQuantityInventoryBalanceButton"
+                                    Content="Edit Quantity"
                                     Height="20"
                                     Width="80"/>
                         </StackPanel>
