@@ -41,7 +41,17 @@
                             <Button Name="EditProductInventoryBalanceButton"
                                     Content="Edit Product"
                                     Height="20"
-                                    Width="80"/>
+                                    Width="80">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                             <Button Name="EditQuantityInventoryBalanceButton"
                                     Content="Edit Quantity"
                                     Height="20"
