@@ -1,0 +1,344 @@
+﻿<Window x:Class="MOTIVAR.pages.submenu.EditProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MOTIVAR.pages.submenu"
+        mc:Ignorable="d"
+        Name="EditProductWindow"
+        Title="Edit Product" 
+        WindowState="Normal"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFCEEAE5"
+        Height="768"
+        Width="683">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Height="auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <!-- 0 Title -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 1 Product Details Header -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 2 Product Details Form -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 3 Product Price Header -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 4 Product Price Form -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 5 Product Position Header -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 6 Product Position Form -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 7 Product Position Form -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 8 Product Position Form -->
+                    <RowDefinition Height="auto"/>
+                    <!-- 9 Product Position Form -->
+                </Grid.RowDefinitions>
+                <TextBlock Text="Edit Product"
+                           FontSize="30"
+                           Grid.Row="0"/>
+                <TextBlock Text="Product Details"
+                           FontSize="20"
+                           TextDecorations="Underline"
+                           Grid.Row="1"/>
+                <VirtualizingStackPanel Orientation="Vertical" 
+                                        Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product ID"
+                                   Grid.Column="0"/>
+                        <TextBox Width="200" 
+                                 Height="20"
+                                 IsEnabled="True"
+                                 IsReadOnly="True"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Name"
+                                   Grid.Column="0"/>
+                        <TextBox Width="200" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Type"
+                                   Grid.Column="0"/>
+                        <ComboBox Name="ProductTypeComboBox"
+                                  ItemsSource="{Binding}"
+                                  Width="100" 
+                                  Height="20"
+                                  HorizontalAlignment="Left"
+                                  Grid.Column="1">
+                        </ComboBox>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Brand"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Size"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Weight"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Colour"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Year"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Country"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Material"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Base Unit"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Sell Unit"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+
+
+                </VirtualizingStackPanel>
+                <TextBlock Text="Product Price"
+                           FontSize="20"
+                           TextDecorations="Underline"
+                           Grid.Row="3"/>
+                <VirtualizingStackPanel Orientation="Vertical"
+                                        Grid.Row="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Buy Base Price"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Sell Base Price"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Buy Sales Price"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Sell Sales Price"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product Quantity Price"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Product VAT"
+                                   Grid.Column="0"/>
+                        <TextBox Width="100" 
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1"/>
+                    </Grid>
+                </VirtualizingStackPanel>
+                <TextBlock Text="Product Image"
+                           FontSize="20"
+                           TextDecorations="Underline"
+                           Grid.Row="5"/>
+                <StackPanel Orientation="Vertical" 
+                                HorizontalAlignment="Center"
+                                Grid.Row="6">
+                    <TextBlock Text="Image Path"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="NewProductImageBrowseTextBlock" Width="200" />
+                        <Button Name="NewProductImageBrowseButton"
+                                    Content="Browse"
+                                    Width="80" 
+                                    Height="20"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Grid.Column="1" Click="NewProductImageBrowseButton_Click"/>
+                    </StackPanel>
+                    <Border Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            Width="603"
+                            Height="300">
+                        <Image Name="NewProductImage" 
+                               HorizontalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+                <TextBlock Text="Product Barcode"
+                           FontSize="20"
+                           TextDecorations="Underline"
+                           Grid.Row="7"/>
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="8">
+                    <Border Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            Width="603"
+                            Height="50">
+                        <Image Name="NewProductBarcodeImage" 
+                               HorizontalAlignment="Stretch"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Grid.Row="9">
+                    <Button Content="Save"
+                            Width="80"
+                            Margin="0 0 10 0">
+
+                    </Button>
+                    <Button Name="NewProductCancelButton"
+                            Content="Cancel"
+                            Width="80"
+                            Margin="0 0 0 0" 
+                            Click="NewProductCancelButton_Click">
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+
+        </ScrollViewer>
+    </Grid>
+</Window>
