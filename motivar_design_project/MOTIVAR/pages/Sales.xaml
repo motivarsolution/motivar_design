@@ -9,10 +9,169 @@
              Background="BlueViolet"
              d:DesignHeight="660" d:DesignWidth="1150">
     <Grid>
-        <TextBlock Text="Sales" 
-                   FontSize="50" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center">
-        </TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                      Background="Black">
+                    <TextBlock Text="Current Product Price -"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"
+                               Foreground="White"
+                               FontWeight="DemiBold"
+                               FontSize="48"/>
+                </Grid>
+                <Grid Grid.Row="1"
+                      Background="Purple">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <TextBlock Text="Product Name"
+                               Foreground="White"
+                               FontWeight="DemiBold"
+                               FontSize="30"/>
+                        <TextBlock Text=" Count"
+                               Foreground="White"
+                               FontWeight="Light"
+                               FontSize="30"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <TextBlock Text="Discount"
+                               Foreground="White"
+                               FontWeight="DemiBold"
+                               FontSize="30"/>
+                        <TextBlock Text=" Price"
+                               Foreground="White"
+                               FontWeight="Light"
+                               FontSize="30"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="3"
+                      Background="MediumPurple">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <TextBlock Text="ID"
+                               Foreground="White"
+                               FontWeight="DemiBold"
+                               FontSize="30"/>
+                        <TextBlock Text=" XXXXXXXXXXXXXX"
+                               Foreground="White"
+                               FontWeight="Light"
+                               FontSize="30"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="4"
+                      Background="Black">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="Total Price"
+                               Foreground="White"
+                               FontWeight="DemiBold"
+                               FontSize="48"/>
+                        <TextBlock Text=" Price"
+                               Foreground="White"
+                               FontWeight="Light"
+                               FontSize="48"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <DataGrid>
+                    
+                </DataGrid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <StackPanel Orientation="Vertical"
+                            Margin="10 10 10 10">
+                    <TextBlock Text="Product Image"
+                               TextDecorations="Underline"
+                               Margin="0 0 0 5"
+                               FontSize="12"
+                               FontStretch="UltraExpanded" 
+                               FontWeight="Normal"/>
+                    <Border Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="2">
+                        <Image Source="..\resource\images\Warehouse.png"/>
+                    </Border>
+                    <TextBlock Text="Barcode"
+                               TextDecorations="Underline"
+                               Margin="0 10 0 5"
+                               FontSize="12"
+                               FontStretch="UltraExpanded" 
+                               FontWeight="Normal"/>
+                    <Grid>
+                        <Border Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="2"
+                            Height="80">
+                            <Image Source="..\resource\images\Sample_Barcode.png"/>
+                        </Border>
+                    </Grid>
+                    <TextBlock Text="Details"
+                               Margin="0 10 0 5"
+                               TextDecorations="Underline"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 01 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 01"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 02 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 02"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 03 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 03"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 04 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 04"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 05 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 05"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 06 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 06"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 07 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 07"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 08 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 08"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 09 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 09"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Details 10 : " Margin="0 0 10 0"/>
+                        <TextBlock Text="Details 10"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
