@@ -17,6 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="100"/>
+                <RowDefinition Height="25"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -45,8 +46,11 @@
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
+                                            <!--<Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>-->
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="FontWeight" Value="Black"/>
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -85,26 +89,32 @@
             </Grid>
             <Grid Grid.Row="2">
                 <Border BorderBrush="Black" BorderThickness="1">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Width="200"/>
-                            <TextBlock Text="Search"/>
-                        </StackPanel>
-                        <DataGrid Name="MainDataGrid"
-                                  SelectionMode="Single"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  ColumnWidth="*"
-                                  IsReadOnly="True"
-                                  CanUserSortColumns="True"
-                                  CanUserAddRows="False"
-                                  CanUserDeleteRows="False"
-                                  CanUserReorderColumns="False"
-                                  CanUserResizeColumns="False"
-                                  CanUserResizeRows="False">
-                        </DataGrid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="200"
+                                     Height="20"
+                                     VerticalAlignment="Center"/>
+                        <TextBlock Text="Search"
+                                       VerticalAlignment="Center"/>
                     </StackPanel>
-                
+                </Border>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <DataGrid Name="MainDataGrid"
+                              FontFamily="Supermarket"
+                              FontSize="14"
+                              SelectionMode="Single"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              ColumnWidth="*"
+                              IsReadOnly="True"
+                              CanUserSortColumns="True"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="False"
+                              CanUserResizeRows="False">
+                    </DataGrid>
                 </Border>
             </Grid>
         </Grid>
