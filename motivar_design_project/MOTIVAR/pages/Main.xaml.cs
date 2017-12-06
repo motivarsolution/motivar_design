@@ -28,10 +28,7 @@ namespace MOTIVAR.pages
         public Sales _Sales = new Sales();
         public Profile _Profile = new Profile();
         public Settings _Settings = new Settings();
-        public InventoryBalanceFooter _InventoryBalanceFooter = new InventoryBalanceFooter();
-        public SalesFooter _SalesFooter = new SalesFooter();
-        public ProfileFooter _ProfileFooter = new ProfileFooter();
-        public SettingsFooter _SettingsFooter = new SettingsFooter();
+        public MainFooter _MainFooterFooter = new MainFooter();
 
         public Main()
         {   
@@ -53,7 +50,7 @@ namespace MOTIVAR.pages
             GlobalFunction.DebugMessage("Footer Height -> " + FooterGrid.ActualHeight);
             GlobalFunction.DebugMessage("Footer Width -> " + FooterGrid.ActualWidth);
 
-            SetUserControlFooter(_InventoryBalanceFooter);
+            SetUserControlFooter(_MainFooterFooter);
 
         }
 
@@ -84,7 +81,7 @@ namespace MOTIVAR.pages
         private void InventoryBalanceMenu_Selected(object sender, RoutedEventArgs e)
         {
             SetUserControlMenu(_InventoryBalance);
-            SetUserControlFooter(_InventoryBalanceFooter);
+            SetUserControlFooter(_MainFooterFooter);
             InventoryBalanceMenuSelectedCheck.Visibility = Visibility.Visible;
             GlobalVariables.CurrentPage = 0;
             GlobalFunction.DebugMessage("Current Page : " + GlobalVariables.CurrentPage);
@@ -93,7 +90,6 @@ namespace MOTIVAR.pages
         private void SalesMenu_Selected(object sender, RoutedEventArgs e)
         {
             SetUserControlMenu(_Sales);
-            SetUserControlFooter(_SalesFooter);
             SalesMenuSelectedCheck.Visibility = Visibility.Visible;
             HiddenInventoryBalanceMenuSelectedCheck();
             GlobalVariables.CurrentPage = 1;
@@ -103,7 +99,6 @@ namespace MOTIVAR.pages
         private void ProfileMenu_Selected(object sender, RoutedEventArgs e)
         {
             SetUserControlMenu(_Profile);
-            SetUserControlFooter(_ProfileFooter);
             ProfileMenuSelectedCheck.Visibility = Visibility.Visible;
             HiddenInventoryBalanceMenuSelectedCheck();
             GlobalVariables.CurrentPage = 2;
@@ -113,7 +108,6 @@ namespace MOTIVAR.pages
         private void SettingsMenu_Selected(object sender, RoutedEventArgs e)
         {
             SetUserControlMenu(_Settings);
-            SetUserControlFooter(_SettingsFooter);
             SettingsMenuSelectedCheck.Visibility = Visibility.Visible;
             HiddenInventoryBalanceMenuSelectedCheck();
             GlobalVariables.CurrentPage = 3;

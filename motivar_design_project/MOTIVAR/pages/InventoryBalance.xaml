@@ -27,18 +27,9 @@
                           Margin="5 0 5 0">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Left">
-                            <ToggleButton Content="Check In"
-                                      Background="Red"
-                                      Height="20"
-                                      Width="80"/>
-                            <ToggleButton Content="Check Out"
-                                      Background="OrangeRed"
-                                      Height="20"
-                                      Width="80"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Right">
+                            <Button Content="New Product"
+                                    Height="20"
+                                    Width="80"/>
                             <Button Name="EditProductInventoryBalanceButton"
                                     Content="Edit Product"
                                     Height="20"
@@ -46,9 +37,9 @@
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>
-                                            <!--<Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Foreground" Value="White"/>
-                                            </Trigger>-->
+                                            </Trigger>
                                             <Trigger Property="IsPressed" Value="True">
                                                 <Setter Property="FontWeight" Value="Black"/>
                                             </Trigger>
@@ -56,6 +47,11 @@
                                     </Style>
                                 </Button.Style>
                             </Button>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+
                             <Button Name="EditQuantityInventoryBalanceButton"
                                     Content="Edit Quantity"
                                     Height="20"

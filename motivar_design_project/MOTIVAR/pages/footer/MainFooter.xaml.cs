@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MOTIVAR.pages.footer
 {
     /// <summary>
-    /// Interaction logic for SalesFooter.xaml
+    /// Interaction logic for MainFooter.xaml
     /// </summary>
-    public partial class SalesFooter : UserControl
+    public partial class MainFooter : UserControl
     {
-        public SalesFooter()
+        public MainFooter()
         {
             InitializeComponent();
         }

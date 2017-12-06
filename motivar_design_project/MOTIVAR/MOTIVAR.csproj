@@ -81,17 +81,8 @@
     <Compile Include="controller\GlobalFunction.cs" />
     <Compile Include="controller\GlobalVariables.cs" />
     <Compile Include="model\TextListModelTest.cs" />
-    <Compile Include="pages\footer\InventoryBalanceFooter.xaml.cs">
-      <DependentUpon>InventoryBalanceFooter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\footer\ProfileFooter.xaml.cs">
-      <DependentUpon>ProfileFooter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\footer\SalesFooter.xaml.cs">
-      <DependentUpon>SalesFooter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\footer\SettingsFooter.xaml.cs">
-      <DependentUpon>SettingsFooter.xaml</DependentUpon>
+    <Compile Include="pages\footer\MainFooter.xaml.cs">
+      <DependentUpon>MainFooter.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\InventoryBalance.xaml.cs">
       <DependentUpon>InventoryBalance.xaml</DependentUpon>
@@ -118,19 +109,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pages\footer\InventoryBalanceFooter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pages\footer\ProfileFooter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pages\footer\SalesFooter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pages\footer\SettingsFooter.xaml">
+    <Page Include="pages\footer\MainFooter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

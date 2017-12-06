@@ -19,6 +19,28 @@
         MinWidth="1366"
         Loaded="MainWindows_Loaded" 
         SizeChanged="MainWindows_SizeChanged">
+
+    <Window.Resources>
+        <FontFamily x:Key="_Font" >../resource/font/RSU_Regular.ttf</FontFamily>
+        <Style x:Key="_ListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="Crimson"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     
     <Grid Name="MainGrid">
         <Grid>
@@ -77,6 +99,7 @@
                         </TextBlock>
                         <ListView Background="WhiteSmoke" 
                                   Margin="0 10 0 0" 
+                                  ItemContainerStyle="{DynamicResource _ListViewItemStyle}"
                                   BorderBrush="Transparent">
                             <ListViewItem Name="InventoryBalanceMenu" 
                                           Selected="InventoryBalanceMenu_Selected" 
@@ -89,6 +112,7 @@
                                           Visibility="Hidden"/>
                                     <TextBlock Text="Inventory Balance" 
                                                FontSize="20"
+                                               Width="180"
                                                FontWeight="Light"
                                                FontFamily="Supermarket"
                                                Foreground="Black"/>
@@ -106,6 +130,7 @@
                                     <TextBlock Text="Sales" 
                                                FontWeight="Light"
                                                FontSize="20"
+                                               Width="180"
                                                FontFamily="Supermarket"
                                                Foreground="Black"/>
                                 </StackPanel>
@@ -122,6 +147,7 @@
                                     <TextBlock Text="Profile" 
                                                FontWeight="Light"
                                                FontSize="20"
+                                               Width="180"
                                                FontFamily="Supermarket"
                                                Foreground="Black"/>
                                 </StackPanel>
@@ -138,6 +164,7 @@
                                     <TextBlock Text="Settings" 
                                                FontWeight="Light"
                                                FontSize="20"
+                                               Width="180"
                                                FontFamily="Supermarket"
                                                Foreground="Black"/>
                                 </StackPanel>
@@ -172,9 +199,7 @@
         
         
     </Grid>
-    <Window.Resources>
-        <FontFamily x:Key="_Font" >../resource/font/RSU_Regular.ttf</FontFamily>
-    </Window.Resources>
+
 </Window>
     
     
