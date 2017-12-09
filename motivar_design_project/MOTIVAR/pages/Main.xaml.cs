@@ -51,7 +51,6 @@ namespace MOTIVAR.pages
             GlobalFunction.DebugMessage("Footer Width -> " + FooterGrid.ActualWidth);
 
             SetUserControlFooter(_MainFooterFooter);
-
         }
 
         private void SetFont()

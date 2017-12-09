@@ -17,6 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
@@ -96,6 +97,30 @@
                 <DataGrid>
                     
                 </DataGrid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Button Width="80">
+                        <StackPanel>
+                            <TextBlock Text="Calculate" 
+                                   FontSize="16"
+                                   FontFamily="Supermarket"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button> 
+                    <Button Width="80">
+                        <StackPanel>
+                            <TextBlock Text="Clear" 
+                                   FontSize="16"
+                                   FontFamily="Supermarket"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
