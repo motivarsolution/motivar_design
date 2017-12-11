@@ -27,13 +27,15 @@
                           Margin="5 0 5 0">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Left">
-                            <Button Content="New Product"
+                            <Button Name="NewProductInventoryBalanceButton"
+                                    Content="New Product"
                                     Height="20"
-                                    Width="80"/>
+                                    Width="80" Click="NewProductInventoryBalanceButton_Click"/>
                             <Button Name="EditProductInventoryBalanceButton"
                                     Content="Edit Product"
                                     Height="20"
-                                    Width="80">
+                                    Width="80" 
+                                    Click="EditProductInventoryBalanceButton_Click">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>

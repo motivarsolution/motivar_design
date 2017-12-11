@@ -9,10 +9,39 @@
              Background="GreenYellow"
              d:DesignHeight="660" d:DesignWidth="1150">
     <Grid>
-        <TextBlock Text="Profile" 
-                   FontSize="50" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center">
-        </TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Border BorderThickness="1"
+                    BorderBrush="Black">
+
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Border BorderThickness="1"
+                    BorderBrush="Black">
+                <StackPanel Orientation="Vertical"
+                            Margin="10 10 10 10">
+                    <TextBlock Text="Logo/Store Image"
+                               TextDecorations="Underline"
+                               Margin="0 0 0 5"
+                               FontSize="12"
+                               FontStretch="UltraExpanded" 
+                               FontWeight="Normal"/>
+                    <Border Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="2">
+                        <Image Source="..\resource\images\Warehouse.png"/>
+                    </Border>
+                    <TextBox />
+                    <Button Content="Browse"
+                            Width="60"
+                            HorizontalAlignment="Right"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

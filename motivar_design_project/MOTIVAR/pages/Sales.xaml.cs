@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MOTIVAR.pages.submenu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace MOTIVAR.pages
         public Sales()
         {
             InitializeComponent();
+        }
+
+        private void CalculateSalesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Calculate calculate = new Calculate();
+            calculate.Show();
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MOTIVAR.model;
+using MOTIVAR.pages.submenu;
 
 namespace MOTIVAR.pages
 {
@@ -35,6 +36,18 @@ namespace MOTIVAR.pages
 
             MainDataGrid.ItemsSource = testList;
 
+        }
+
+        private void EditProductInventoryBalanceButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditProduct editProduct = new EditProduct();
+            editProduct.Show();
+        }
+
+        private void NewProductInventoryBalanceButton_Click(object sender, RoutedEventArgs e)
+        {
+            NewProduct newProduct = new NewProduct();
+            newProduct.Show();
         }
     }
 

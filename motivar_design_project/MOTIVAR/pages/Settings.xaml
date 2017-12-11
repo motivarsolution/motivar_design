@@ -9,10 +9,21 @@
              Background="Tomato"
              d:DesignHeight="660" d:DesignWidth="1150">
     <Grid>
-        <TextBlock Text="Settings" 
-                   FontSize="50" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center">
-        </TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Border BorderThickness="1"
+                    BorderBrush="Black">
+
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Border BorderThickness="1"
+                    BorderBrush="Black">
+                
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

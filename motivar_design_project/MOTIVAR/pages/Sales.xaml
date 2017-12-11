@@ -101,20 +101,19 @@
             <Grid Grid.Row="2">
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <Button Width="80">
+                    <Button Width="80"
+                            Name="CalculateSalesButton" Click="CalculateSalesButton_Click" Height="30" VerticalAlignment="Bottom">
                         <StackPanel>
                             <TextBlock Text="Calculate" 
-                                   FontSize="16"
-                                   FontFamily="Supermarket"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"/>
+                                       FontSize="16"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Button> 
                     <Button Width="80">
                         <StackPanel>
                             <TextBlock Text="Clear" 
                                    FontSize="16"
-                                   FontFamily="Supermarket"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"/>
                         </StackPanel>
