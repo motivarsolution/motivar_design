@@ -16,7 +16,14 @@
         <Grid Grid.Column="0">
             <Border BorderThickness="1"
                     BorderBrush="Black">
+                <TabControl>
+                    <TabItem Content="Setting Menu 1">
+                        
+                    </TabItem>
+                    <TabItem Content="Setting Menu 2">
 
+                    </TabItem>
+                </TabControl>
             </Border>
         </Grid>
         <Grid Grid.Column="1">
