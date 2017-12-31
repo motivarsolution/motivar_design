@@ -17,10 +17,11 @@
             <Border BorderThickness="1"
                     BorderBrush="Black">
                 <TabControl>
-                    <TabItem Content="Setting Menu 1">
+                    
+                    <TabItem Content="Setting Menu 1" Header="Setting1">
                         
                     </TabItem>
-                    <TabItem Content="Setting Menu 2">
+                    <TabItem Content="Setting Menu 2" Header="Setting2">
 
                     </TabItem>
                 </TabControl>
